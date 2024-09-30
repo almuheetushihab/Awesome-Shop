@@ -9,7 +9,7 @@
     tools:context=".LoginFragment"
     >
 
-    <!-- Welcome Text -->
+
     <TextView
         android:id="@+id/tv_Welcome"
         android:layout_width="match_parent"
