@@ -15,4 +15,7 @@
     <string name="password">Password</string>
     <string name="login">Log in</string>
     <string name="welcome_user_name">Welcome, [User Name]</string>
+    <string name="categories">Categories</string>
+    <string name="products">Products</string>
+    <string name="product_image">Product Image</string>
 </resources>
