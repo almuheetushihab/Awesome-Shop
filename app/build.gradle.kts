@@ -54,6 +54,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.dagger)
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
     kapt(libs.androidx.kapt)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui.ktx)
