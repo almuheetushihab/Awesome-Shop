@@ -4,7 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.awesomeshop.databinding.ProductAdapterBinding
-import com.example.awesomeshop.productModel.ProductsResponseItem
+import com.example.awesomeshop.models.product.ProductsResponseItem
+
 import java.util.ArrayList
 
 class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {

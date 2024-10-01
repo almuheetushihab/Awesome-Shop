@@ -27,4 +27,6 @@
     <string name="value">value</string>
     <string name="product_name">Product Name</string>
     <string name="order">Order</string>
+    <string name="settings_icon">Settings Icon</string>
+    <string name="back_button">Back Button</string>
 </resources>
