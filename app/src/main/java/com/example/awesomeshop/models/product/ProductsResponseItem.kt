@@ -1,4 +1,4 @@
-package com.example.awesomeshop.productModel
+package com.example.awesomeshop.models.product
 
 data class ProductsResponseItem(
     val category: String,

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.awesomeshop.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.awesomeshop.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/categoryWiseProductFragment"
+        android:name="com.example.awesomeshop.CategoryWiseProductFragment"
+        android:label="fragment_category_wise_product_list"
+        tools:layout="@layout/fragment_category_wise_product_list" />
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.example.awesomeshop.ProductDetailsFragment"
+        android:label="products_details"
+        tools:layout="@layout/products_details" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.awesomeshop.CartFragment"
+        android:label="fragment_cart_list"
+        tools:layout="@layout/fragment_cart_list" />
+</navigation>
