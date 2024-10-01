@@ -27,7 +27,7 @@
     <EditText
         android:id="@+id/et_FullName"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:hint="@string/full_name"
         android:autofillHints="full_name"
         android:padding="10dp"
@@ -42,7 +42,7 @@
     <EditText
         android:id="@+id/et_Username"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:hint="@string/username"
         android:padding="10dp"
         android:inputType="textPersonName"
@@ -57,7 +57,7 @@
     <EditText
         android:id="@+id/et_Password"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:hint="@string/password"
         android:autofillHints="password"
         android:padding="10dp"
