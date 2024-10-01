@@ -12,7 +12,7 @@ class ProductViewModel(val productRepository: ProductRepository) : ViewModel() {
         MutableLiveData<ProductsResponse?>()
     }
     val items : MutableLiveData<ProductsResponse?> = _items
-    
+
     fun getProducts() = viewModelScope.launch {
         try {
             _items.value = productRepository.getProducts()
