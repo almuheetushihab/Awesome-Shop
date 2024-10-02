@@ -38,6 +38,9 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.homeToolBer.toolBerTitle.text = "Awesome Shop"
+        binding.homeToolBer.toolBerBackBtn.visibility = View.GONE
+
 
         val fullName = args.data
         binding.tvWelcome.text = "Welcome, $fullName"

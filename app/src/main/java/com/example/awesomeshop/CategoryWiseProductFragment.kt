@@ -31,6 +31,12 @@ class CategoryWiseProductFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.productToolBer.toolBerTitle.text = "Category Wise Product"
+        binding.productToolBer.toolBerBackBtn.visibility = View.VISIBLE
+        binding.productToolBer.toolBerBackBtn.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
 
         val category = args.data
         val recyclerView: RecyclerView = binding.categoryWiseProductFragmentRecyclerView

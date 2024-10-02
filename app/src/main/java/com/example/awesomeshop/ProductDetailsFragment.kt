@@ -27,6 +27,11 @@ class ProductDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.productToolBer.toolBerTitle.text = "Product Details"
+        binding.productToolBer.toolBerBackBtn.visibility = View.VISIBLE
+        binding.productToolBer.toolBerBackBtn.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
 
         val id = args.data
         viewModel = ProductDetailsViewModel(ProductDetailsRepository())
