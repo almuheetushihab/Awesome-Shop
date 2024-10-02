@@ -24,4 +24,7 @@ interface ApiInterface {
 
     @GET("products/category/{category}")
     suspend fun getCategoryWiseProducts(@Path("category") category: String): Response<List<ProductsResponseItem>>
+
+    @GET("products/{id}")
+    suspend fun getProductDetails(@Path("id") id: Int): Response<ProductsResponseItem>
 }

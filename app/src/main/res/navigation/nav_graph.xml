@@ -31,6 +31,9 @@
         <argument
             android:name="data"
             app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/categoryWiseProductFragment"
@@ -45,7 +48,11 @@
         android:id="@+id/productDetailsFragment"
         android:name="com.example.awesomeshop.ProductDetailsFragment"
         android:label="products_details"
-        tools:layout="@layout/products_details" />
+        tools:layout="@layout/products_details" >
+        <argument
+            android:name="data"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.example.awesomeshop.CartFragment"
