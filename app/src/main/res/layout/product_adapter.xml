@@ -2,32 +2,33 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
     tools:context=".ProductAdapter">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
         <ImageView
             android:id="@+id/single_product_img"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:contentDescription="@string/product_images"
-            android:src="@drawable/product_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/product_1" />
 
         <TextView
             android:id="@+id/single_product_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:layout_marginTop="24dp"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,9 +40,8 @@
             android:id="@+id/single_product_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_marginTop="12dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

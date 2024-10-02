@@ -9,7 +9,7 @@ import com.example.awesomeshop.models.product.ProductsResponseItem
 import java.util.ArrayList
 
 class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
-    private lateinit var productList: ArrayList<ProductsResponseItem>
+    private  var productList = ArrayList<ProductsResponseItem>()
 
     companion object{
         var listener: ItemClickListener? = null
@@ -24,10 +24,18 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val product = productList[position]
+        viewHolder.binding.singleProductPrice.text = product.price.toString()
+        viewHolder.binding.singleProductTitle.text = product.title
+//        viewHolder.binding.singleProductImg.setImageResource(product.image.length)
     }
 
     override fun getItemCount(): Int {
         return productList.size
+    }
+
+    fun setProductList(product: ArrayList<ProductsResponseItem>) {
+        this.productList = ArrayList(product)
+        notifyDataSetChanged()
     }
 
     interface ItemClickListener {

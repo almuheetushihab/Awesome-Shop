@@ -8,10 +8,12 @@ import com.example.awesomeshop.reposatories.ProductRepository
 import kotlinx.coroutines.launch
 
 class ProductViewModel(val productRepository: ProductRepository) : ViewModel() {
-    private val _items : MutableLiveData<ProductsResponse?> by lazy {
+
+
+    private val _items: MutableLiveData<ProductsResponse?> by lazy {
         MutableLiveData<ProductsResponse?>()
     }
-    val items : MutableLiveData<ProductsResponse?> = _items
+    val items: MutableLiveData<ProductsResponse?> = _items
 
     fun getProducts() = viewModelScope.launch {
         try {
@@ -20,4 +22,5 @@ class ProductViewModel(val productRepository: ProductRepository) : ViewModel() {
             _items.value = null
         }
 
-}}
+    }
+}

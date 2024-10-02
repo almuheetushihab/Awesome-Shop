@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <argument
+            android:name="data"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/categoryWiseProductFragment"

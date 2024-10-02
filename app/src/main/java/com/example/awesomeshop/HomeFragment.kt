@@ -1,15 +1,31 @@
 package com.example.awesomeshop
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.awesomeshop.databinding.FragmentHomeBinding
+import com.example.awesomeshop.reposatories.CategoriesRepository
+import com.example.awesomeshop.reposatories.ProductRepository
+import com.example.awesomeshop.viewModel.CategoriesViewModel
+import com.example.awesomeshop.viewModel.ProductViewModel
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+    private val args: HomeFragmentArgs by navArgs()
+    private lateinit var viewModel: CategoriesViewModel
+    private lateinit var productViewModel: ProductViewModel
+    private lateinit var adapter: CategoriesAdapter
+    private lateinit var productAdapter: ProductAdapter
 
 
     override fun onCreateView(
@@ -20,9 +36,49 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val fullName = args.data
+        binding.tvWelcome.text = "Welcome, $fullName"
+
+        val recyclerView: RecyclerView = binding.rvCategories
+        recyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        val productRecyclerView: RecyclerView = binding.rvProducts
+        productRecyclerView.layoutManager = GridLayoutManager(context, 2)
+
+
+
+        viewModel = CategoriesViewModel(CategoriesRepository())
+        viewModel.getCategories()
+        viewModel.items.observe(viewLifecycleOwner) {
+            it?.let {
+                adapter = CategoriesAdapter()
+                adapter.setCategoryList(it)
+                recyclerView.adapter = adapter
+                Log.d("categories", "onViewCreated: $it")
+
+            }
+        }
+
+        productViewModel = ProductViewModel(ProductRepository())
+        productViewModel.getProducts()
+        productViewModel.items.observe(viewLifecycleOwner) {
+            it?.let {
+                productAdapter = ProductAdapter()
+                productAdapter.setProductList(it)
+                productRecyclerView.adapter = productAdapter
+                Log.d("products", "onViewCreated: $it")
+            }
+
+
+        }
+
+
+
+
     }
-
-
 }

@@ -7,5 +7,5 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.awesomeshop.databinding.AdapterCartBinding
 
-class CartAdapter {
+class CartAdapter() {
 }

@@ -8,7 +8,7 @@ import com.example.awesomeshop.models.categorie.CategorieResponse
 import java.util.ArrayList
 
 class CategoriesAdapter() : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
-    private lateinit var categoryList: ArrayList<CategorieResponse>
+    private var categoryList = ArrayList<String>()
 
     companion object{
         var listener: ItemClickListener? = null
@@ -26,10 +26,17 @@ class CategoriesAdapter() : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>()
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val category = categoryList[position]
+        viewHolder.binding.categoriesName.text = category
+
+
     }
 
     override fun getItemCount(): Int {
         return categoryList.size
+    }
+    fun setCategoryList(categories: List<String>) {
+        this.categoryList = ArrayList(categories)
+        notifyDataSetChanged()
     }
 
     interface ItemClickListener {
