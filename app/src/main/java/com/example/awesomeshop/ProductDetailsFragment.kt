@@ -37,11 +37,11 @@ class ProductDetailsFragment : Fragment() {
                 Glide.with(binding.root.context)
                     .load(imageUrl)
                     .into(binding.productImg)
-                binding.productTitle.text = it.title
-                binding.productPrice.text = it.price.toString()
-                binding.productDescription.text = it.description
-                binding.tvKey.text = it.category
-                binding.tvValue.text = it.rating.rate.toString()
+                binding.productTitle.text = "Title : ${it.title}"
+                binding.productPrice.text = "Price : ${it.price}৳"
+                binding.productDescription.text = "Description : ${it.description}"
+                binding.tvKey.text = "Rating :"
+                binding.tvValue.text = "${it.rating.rate}%"
 
             }
         }

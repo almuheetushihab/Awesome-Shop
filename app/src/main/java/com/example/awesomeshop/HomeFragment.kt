@@ -15,7 +15,6 @@ import com.example.awesomeshop.databinding.FragmentHomeBinding
 import com.example.awesomeshop.reposatories.CategoriesRepository
 import com.example.awesomeshop.reposatories.ProductRepository
 import com.example.awesomeshop.viewModel.CategoriesViewModel
-import com.example.awesomeshop.viewModel.ProductDetailsViewModel
 import com.example.awesomeshop.viewModel.ProductViewModel
 
 
@@ -24,7 +23,6 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
     private val args: HomeFragmentArgs by navArgs()
     private lateinit var viewModel: CategoriesViewModel
     private lateinit var productViewModel: ProductViewModel
-    private lateinit var ProductDetailsViewModel: ProductDetailsViewModel
     private lateinit var adapter: CategoriesAdapter
     private lateinit var productAdapter: ProductAdapter
 
@@ -43,8 +41,6 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
 
         val fullName = args.data
         binding.tvWelcome.text = "Welcome, $fullName"
-        val id = args.id
-
 
         val recyclerView: RecyclerView = binding.rvCategories
         recyclerView.layoutManager =
@@ -86,12 +82,12 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
 
     }
 
-    override fun onItemClick(category: String) {
-        val action = HomeFragmentDirections.actionHomeFragmentToCategoryWiseProductFragment(category)
+    override fun onItemClick(categories: String) {
+        val action = HomeFragmentDirections.actionHomeFragmentToCategoryWiseProductFragment(categories)
         findNavController().navigate(action)
     }
 
-    override fun itemClick(position: Int) {
+    override fun itemClick(id: Int) {
         val action = HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(id)
         findNavController().navigate(action)
 

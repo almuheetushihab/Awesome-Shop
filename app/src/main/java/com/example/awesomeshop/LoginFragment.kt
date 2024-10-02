@@ -74,7 +74,6 @@ class LoginFragment : Fragment() {
 
     private fun navigateToHomeFragment() {
         val fullName = binding.etFullName.text.toString()
-
         val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(fullName)
         findNavController().navigate(action)
     }
@@ -83,7 +82,7 @@ class LoginFragment : Fragment() {
         val savedFullName = sharedPreference.getFullName()
         val savedUsername = sharedPreference.getUsername()
         val savedPassword = sharedPreference.getPassword()
-        if (!savedFullName.isNullOrEmpty() && !savedUsername.isNullOrEmpty() && !savedPassword.isNullOrEmpty()) {
+        if (!savedUsername.isNullOrEmpty() && !savedPassword.isNullOrEmpty()) {
             binding.etFullName.setText(savedFullName)
             binding.etUsername.setText(savedUsername)
             binding.etPassword.setText(savedPassword)

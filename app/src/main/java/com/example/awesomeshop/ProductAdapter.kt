@@ -1,5 +1,6 @@
 package com.example.awesomeshop
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +10,7 @@ import com.example.awesomeshop.models.product.ProductsResponseItem
 
 import java.util.ArrayList
 
-class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
     private  var productList = ArrayList<ProductsResponseItem>()
 
     companion object{
@@ -23,6 +24,7 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val product = productList[position]
 
@@ -35,7 +37,7 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
         viewHolder.binding.singleProductPrice.text = "Price : ${product.price}৳"
         viewHolder.binding.singleRating.text = "Rating : ${product.rating.rate}%"
         viewHolder.itemView.setOnClickListener {
-            listener?.itemClick(position)
+            listener?.itemClick(product.id)
         }
     }
 
@@ -43,13 +45,14 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
         return productList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setProductList(product: ArrayList<ProductsResponseItem>) {
         this.productList = ArrayList(product)
         notifyDataSetChanged()
     }
 
     interface OnItemClickListener {
-        fun itemClick(position: Int)
+        fun itemClick(product: Int)
     }
 }
 
