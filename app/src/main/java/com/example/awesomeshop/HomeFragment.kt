@@ -1,13 +1,12 @@
 package com.example.awesomeshop
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +18,7 @@ import com.example.awesomeshop.viewModel.CategoriesViewModel
 import com.example.awesomeshop.viewModel.ProductViewModel
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAdapter.OnItemClickListener {
     private lateinit var binding: FragmentHomeBinding
     private val args: HomeFragmentArgs by navArgs()
     private lateinit var viewModel: CategoriesViewModel
@@ -50,9 +49,12 @@ class HomeFragment : Fragment() {
         val productRecyclerView: RecyclerView = binding.rvProducts
         productRecyclerView.layoutManager = GridLayoutManager(context, 2)
 
+        CategoriesAdapter.listener = this
+        ProductAdapter.listener = this
 
 
         viewModel = CategoriesViewModel(CategoriesRepository())
+
         viewModel.getCategories()
         viewModel.items.observe(viewLifecycleOwner) {
             it?.let {
@@ -78,7 +80,17 @@ class HomeFragment : Fragment() {
         }
 
 
+    }
 
+    override fun onItemClick(category: String) {
+        val action = HomeFragmentDirections.actionHomeFragmentToCategoryWiseProductFragment(category)
+        findNavController().navigate(action)
+    }
+
+    override fun itemClick(position: Int) {
+        val action = HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment()
+        findNavController().navigate(action)
 
     }
+
 }

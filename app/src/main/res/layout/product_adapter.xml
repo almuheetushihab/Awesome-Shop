@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/single_product_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:contentDescription="@string/product_images"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,9 +27,8 @@
             android:id="@+id/single_product_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textSize="14sp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,13 +39,26 @@
             android:id="@+id/single_product_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:textSize="14sp"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/single_product_title"
             tools:text="Product Price"/>
+        <TextView
+            android:id="@+id/single_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:textAlignment="textStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/single_product_price"
+            tools:text="Rating"/>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

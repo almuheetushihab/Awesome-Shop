@@ -8,39 +8,36 @@ import com.example.awesomeshop.models.categorie.CategorieResponse
 import java.util.ArrayList
 
 class CategoriesAdapter() : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
+
     private var categoryList = ArrayList<String>()
 
     companion object{
-        var listener: ItemClickListener? = null
+        lateinit var listener: ItemClickListener
     }
 
-    class ViewHolder(var binding: CategoriesAdapterBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: CategoriesAdapterBinding) : RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(
-        viewGroup: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
-        val binding = CategoriesAdapterBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding = CategoriesAdapterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val category = categoryList[position]
-        viewHolder.binding.categoriesName.text = category
-
-
+        holder.binding.categoriesName.text = category
+        holder.itemView.setOnClickListener {
+            listener.onItemClick(category)
+        }
     }
 
-    override fun getItemCount(): Int {
-        return categoryList.size
-    }
+    override fun getItemCount(): Int = categoryList.size
+
     fun setCategoryList(categories: List<String>) {
-        this.categoryList = ArrayList(categories)
+        categoryList = ArrayList(categories)
         notifyDataSetChanged()
     }
 
     interface ItemClickListener {
-        fun onItemClick(position: Int)
+        fun onItemClick(category: String)
     }
-
 }

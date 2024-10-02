@@ -36,7 +36,11 @@
         android:id="@+id/categoryWiseProductFragment"
         android:name="com.example.awesomeshop.CategoryWiseProductFragment"
         android:label="fragment_category_wise_product_list"
-        tools:layout="@layout/fragment_category_wise_product_list" />
+        tools:layout="@layout/fragment_category_wise_product_list" >
+        <argument
+            android:name="data"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.example.awesomeshop.ProductDetailsFragment"
