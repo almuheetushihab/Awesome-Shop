@@ -18,6 +18,7 @@
         android:id="@+id/categoryWiseProductFragment_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
         android:clipToPadding="false"
         android:layout_margin="8dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

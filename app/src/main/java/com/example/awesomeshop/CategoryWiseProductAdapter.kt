@@ -12,18 +12,25 @@ class CategoryWiseProductAdapter : RecyclerView.Adapter<CategoryWiseProductAdapt
 
     private var productList = ArrayList<ProductsResponseItem>()
 
-    class ViewHolder(val binding: CategoryWiseProductAdapterBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: CategoryWiseProductAdapterBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val binding = CategoryWiseProductAdapterBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        val binding = CategoryWiseProductAdapterBinding.inflate(
+            LayoutInflater.from(viewGroup.context),
+            viewGroup,
+            false
+        )
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val product = productList[position]
 
+        val imageUrl = product.image
+
         Glide.with(viewHolder.itemView.context)
-            .load(product.image)
+            .load(imageUrl)
             .into(viewHolder.binding.productImg)
 
         viewHolder.binding.productTitle.text = product.title

@@ -29,4 +29,8 @@
     <string name="order">Order</string>
     <string name="settings_icon">Settings Icon</string>
     <string name="back_button">Back Button</string>
+    <string name="cart">Cart</string>
+    <string name="log_out">Log Out</string>
+    <string name="carts">Cart</string>
+    <string name="logout">Logout</string>
 </resources>

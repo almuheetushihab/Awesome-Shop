@@ -4,27 +4,35 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.awesomeshop.databinding.FragmentHomeBinding
 import com.example.awesomeshop.reposatories.CategoriesRepository
 import com.example.awesomeshop.reposatories.ProductRepository
+import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.CategoriesViewModel
 import com.example.awesomeshop.viewModel.ProductViewModel
 
 
-class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAdapter.OnItemClickListener {
+class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener,
+    ProductAdapter.OnItemClickListener {
     private lateinit var binding: FragmentHomeBinding
     private val args: HomeFragmentArgs by navArgs()
     private lateinit var viewModel: CategoriesViewModel
     private lateinit var productViewModel: ProductViewModel
     private lateinit var adapter: CategoriesAdapter
     private lateinit var productAdapter: ProductAdapter
+    private lateinit var sharedPreferences : SharedPreferenceHelper
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
 
     override fun onCreateView(
@@ -41,6 +49,7 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
         binding.homeToolBer.toolBerTitle.text = "Awesome Shop"
         binding.homeToolBer.toolBerBackBtn.visibility = View.GONE
 
+        sharedPreferences = SharedPreferenceHelper(requireContext())
 
         val fullName = args.data
         binding.tvWelcome.text = "Welcome, $fullName"
@@ -85,8 +94,41 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
 
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolber_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_cart -> {
+               val action = HomeFragmentDirections.actionHomeFragmentToCartFragment()
+                findNavController().navigate(action)
+                true
+            }
+
+            R.id.action_logout -> {
+                logout()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+
+    }
+
+
+    private fun logout() {
+    sharedPreferences.clearCredentials()
+    val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
+        findNavController().navigate(action)
+}
+
+
     override fun onItemClick(categories: String) {
-        val action = HomeFragmentDirections.actionHomeFragmentToCategoryWiseProductFragment(categories)
+        val action =
+            HomeFragmentDirections.actionHomeFragmentToCategoryWiseProductFragment(categories)
         findNavController().navigate(action)
     }
 
@@ -97,3 +139,4 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
     }
 
 }
+

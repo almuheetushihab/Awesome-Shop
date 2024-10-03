@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.awesomeshop.databinding.CategoriesAdapterBinding
-import com.example.awesomeshop.models.categorie.CategorieResponse
 import java.util.ArrayList
 
 class CategoriesAdapter() : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
@@ -17,15 +16,15 @@ class CategoriesAdapter() : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>()
 
     class ViewHolder(val binding: CategoriesAdapterBinding) : RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = CategoriesAdapterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+        val binding = CategoriesAdapterBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val category = categoryList[position]
-        holder.binding.categoriesName.text = category
-        holder.itemView.setOnClickListener {
+        viewHolder.binding.categoriesName.text = category
+        viewHolder.itemView.setOnClickListener {
             listener.onItemClick(category)
         }
     }
