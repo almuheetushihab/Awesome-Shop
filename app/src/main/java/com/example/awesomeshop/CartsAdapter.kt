@@ -2,48 +2,36 @@ package com.example.awesomeshop
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 
 import com.example.awesomeshop.placeholder.PlaceholderContent.PlaceholderItem
 import com.example.awesomeshop.databinding.AdapterCartsBinding
+import com.example.awesomeshop.models.product.ProductsResponseItem
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
-class CartsAdapter(
-    private val values: List<PlaceholderItem>
-) : RecyclerView.Adapter<CartsAdapter.ViewHolder>() {
+
+class CartsAdapter : RecyclerView.Adapter<CartsAdapter.ViewHolder>() {
+    private var values = ArrayList<ProductsResponseItem>()
+
+    class ViewHolder(val binding: AdapterCartsBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-        return ViewHolder(
-            AdapterCartsBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
-
+        val binding = AdapterCartsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+
     }
 
-    override fun getItemCount(): Int = values.size
+    override fun getItemCount(): Int {
+        return values.size
 
-    inner class ViewHolder(binding: AdapterCartsBinding) : RecyclerView.ViewHolder(binding.root) {
-        val idView: TextView = binding.itemNumber
-        val contentView: TextView = binding.content
-
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
-        }
     }
+    fun setValues(products: List<ProductsResponseItem>) {
+        this.values = ArrayList(values)
+        notifyDataSetChanged()
+    }
+
 
 }

@@ -5,16 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.awesomeshop.databinding.ProductsDetailsBinding
 import com.example.awesomeshop.reposatories.ProductDetailsRepository
+import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.ProductDetailsViewModel
 
 class ProductDetailsFragment : Fragment() {
     private lateinit var binding: ProductsDetailsBinding
     private val args: ProductDetailsFragmentArgs by navArgs()
     private lateinit var viewModel: ProductDetailsViewModel
+    private lateinit var sharedPreferences : SharedPreferenceHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +35,20 @@ class ProductDetailsFragment : Fragment() {
         binding.productToolBer.toolBerBackBtn.visibility = View.VISIBLE
         binding.productToolBer.toolBerBackBtn.setOnClickListener {
             requireActivity().onBackPressed()
+        }
+        binding.productToolBer.root.setOnMenuItemClickListener { item ->
+            when(item.itemId){
+                R.id.action_cart -> {
+                    val action = ProductDetailsFragmentDirections.actionProductDetailsFragmentToCartsFragment()
+                    findNavController().navigate(action)
+                    true
+                }
+                R.id.action_logout ->{
+                    logout()
+                    true
+                }
+                else -> false
+            }
         }
 
         val id = args.data
@@ -51,6 +69,12 @@ class ProductDetailsFragment : Fragment() {
             }
         }
 
+    }
+    private fun logout() {
+        sharedPreferences = SharedPreferenceHelper(requireContext())
+        sharedPreferences.clearCredentials()
+        val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
+        findNavController().navigate(action)
     }
 
 }

@@ -10,9 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.awesomeshop.databinding.FragmentCategoryWiseProductListBinding
 import com.example.awesomeshop.reposatories.CategoryWiseProductRepository
+import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.CategoryWiseProductViewModel
 
 
@@ -21,6 +23,7 @@ class CategoryWiseProductFragment : Fragment() {
     private lateinit var categoryWiseProductAdapter: CategoryWiseProductAdapter
     private lateinit var viewModel: CategoryWiseProductViewModel
     private val args: CategoryWiseProductFragmentArgs by navArgs()
+    private lateinit var sharedPreferences : SharedPreferenceHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -31,10 +34,24 @@ class CategoryWiseProductFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.productToolBer.toolBerTitle.text = "Category Wise Product"
-        binding.productToolBer.toolBerBackBtn.visibility = View.VISIBLE
-        binding.productToolBer.toolBerBackBtn.setOnClickListener {
+        binding.categoryWiseProductFragmentToolBer.toolBerTitle.text = "Category Wise Product"
+        binding.categoryWiseProductFragmentToolBer.toolBerBackBtn.visibility = View.VISIBLE
+        binding.categoryWiseProductFragmentToolBer.toolBerBackBtn.setOnClickListener {
             requireActivity().onBackPressed()
+        }
+        binding.categoryWiseProductFragmentToolBer.root.setOnMenuItemClickListener { item ->
+            when(item.itemId){
+                R.id.action_cart -> {
+                    val action = CategoryWiseProductFragmentDirections.actionCategoryWiseProductFragmentToCartsFragment()
+                    findNavController().navigate(action)
+                    true
+                }
+                R.id.action_logout ->{
+                    logout()
+                    true
+                }
+                else -> false
+            }
         }
 
 
@@ -51,5 +68,11 @@ class CategoryWiseProductFragment : Fragment() {
                 recyclerView.adapter = categoryWiseProductAdapter
             }
         }
+    }
+    private fun logout() {
+        sharedPreferences = SharedPreferenceHelper(requireContext())
+        sharedPreferences.clearCredentials()
+        val action = CategoryWiseProductFragmentDirections.actionCategoryWiseProductFragmentToLoginFragment()
+        findNavController().navigate(action)
     }
 }
