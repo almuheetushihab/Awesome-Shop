@@ -33,8 +33,8 @@ class CategoryWiseProductAdapter : RecyclerView.Adapter<CategoryWiseProductAdapt
             .load(imageUrl)
             .into(viewHolder.binding.productImg)
 
-        viewHolder.binding.productTitle.text = product.title
-        viewHolder.binding.productPrice.text = product.price.toString()
+        viewHolder.binding.productTitle.text = "Title: ${product.title}"
+        viewHolder.binding.productPrice.text = "Price: ${product.price}"
     }
 
     override fun getItemCount(): Int {

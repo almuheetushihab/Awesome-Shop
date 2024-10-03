@@ -45,7 +45,7 @@ class ProductDetailsFragment : Fragment() {
                 binding.productTitle.text = "Title : ${it.title}"
                 binding.productPrice.text = "Price : ${it.price}৳"
                 binding.productDescription.text = "Description : ${it.description}"
-                binding.tvKey.text = "Categories : ${it.category}"
+                binding.tvKey.text = it.category
                 binding.tvValue.text = "Rating : ${it.rating.rate}%"
 
             }

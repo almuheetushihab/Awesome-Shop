@@ -1,11 +1,22 @@
 package com.example.awesomeshop
 
 import androidx.recyclerview.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.example.awesomeshop.databinding.AdapterCartBinding
 
-class CartAdapter() {
+class CartAdapter() : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
+//    private val cartList = ArrayList<CartResponseItem>()
+
+    companion object{}
+    class ViewHolder(var binding: CartAdapterBinding) : RecyclerView.ViewHolder(binding.root)
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): CartAdapter.ViewHolder {
+
+    }
+
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+
+    }
+
+    override fun getItemCount(): Int {
+
+    }
 }

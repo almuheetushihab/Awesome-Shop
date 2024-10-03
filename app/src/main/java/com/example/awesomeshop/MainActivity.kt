@@ -19,26 +19,21 @@ import com.example.awesomeshop.viewModel.ProductViewModel
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    //    private lateinit var viewModel: ProductViewModel
-    private lateinit var viewModel: ProductDetailsViewModel
+    //    private lateinit var viewModel: ProductDetailsViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        enableEdgeToEdge()
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        viewModel = ProductViewModel(ProductRepository())
-//        viewModel.getProducts()
+//        viewModel = ProductDetailsViewModel(ProductDetailsRepository())
+//        viewModel.getProductDetails(1)
 //        viewModel.items.observe(this) {
 //            it?.let {
 //                Log.d("product", "onCreate: $it")
 //            }
 //        }
-        viewModel = ProductDetailsViewModel(ProductDetailsRepository())
-        viewModel.getProductDetails(1)
-        viewModel.items.observe(this) {
-            it?.let {
-                Log.d("product", "onCreate: $it")
-            }
-        }
     }
 }
