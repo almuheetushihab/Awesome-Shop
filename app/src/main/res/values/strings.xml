@@ -33,4 +33,8 @@
     <string name="log_out">Log Out</string>
     <string name="carts">Cart</string>
     <string name="logout">Logout</string>
+    <string name="show_password">show password</string>
+    <string name="passwordss">Password</string>
+    <string name="visibile">visibile</string>
+    <string name="app_logo">app logo</string>
 </resources>

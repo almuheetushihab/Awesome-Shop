@@ -1,16 +1,13 @@
 package com.example.awesomeshop
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-
-import com.example.awesomeshop.placeholder.PlaceholderContent.PlaceholderItem
+import androidx.recyclerview.widget.RecyclerView
 import com.example.awesomeshop.databinding.AdapterCartsBinding
 import com.example.awesomeshop.models.product.ProductsResponseItem
 
-
 class CartsAdapter : RecyclerView.Adapter<CartsAdapter.ViewHolder>() {
-    private var values = ArrayList<ProductsResponseItem>()
+    private var cartList = ArrayList<ProductsResponseItem>()
 
     class ViewHolder(val binding: AdapterCartsBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -20,18 +17,20 @@ class CartsAdapter : RecyclerView.Adapter<CartsAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val item = values[position]
+        val item = cartList[position]
 
+        viewHolder.binding.tvProductName.text = item.title
+        viewHolder.binding.tvPriceValue.text = "${item.price} tk"
+        viewHolder.binding.tvQuantityValue.text = "Quantity: ${item.rating.count}"
+        viewHolder.binding.tvTotalValue.text = "${item.price * item.rating.count} tk"
     }
 
     override fun getItemCount(): Int {
-        return values.size
-
+        return cartList.size
     }
+
     fun setValues(products: List<ProductsResponseItem>) {
-        this.values = ArrayList(values)
+        this.cartList = ArrayList(products)
         notifyDataSetChanged()
     }
-
-
 }

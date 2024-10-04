@@ -1,6 +1,7 @@
 package com.example.awesomeshop
 
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +35,21 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.visibilityOn.setOnClickListener {
+            binding.visibilityOn.visibility = View.GONE
+            binding.visibilityOff.visibility = View.VISIBLE
+            binding.etPassword.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            binding.etPassword.setSelection(binding.etPassword.text.length)
+        }
+        binding.visibilityOff.setOnClickListener {
+            binding.visibilityOff.visibility = View.GONE
+            binding.visibilityOn.visibility = View.VISIBLE
+            binding.etPassword.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            binding.etPassword.setSelection(binding.etPassword.text.length)
+        }
 
         binding.btnLogin.setOnClickListener {
             val username = binding.etUsername.text.toString().trim()
@@ -83,9 +99,11 @@ class LoginFragment : Fragment() {
         val savedUsername = sharedPreference.getUsername()
         val savedPassword = sharedPreference.getPassword()
         if (!savedUsername.isNullOrEmpty() && !savedPassword.isNullOrEmpty()) {
+
             binding.etFullName.setText(savedFullName)
             binding.etUsername.setText(savedUsername)
             binding.etPassword.setText(savedPassword)
+            viewModel.login(savedUsername, savedPassword)
         }
     }
 }

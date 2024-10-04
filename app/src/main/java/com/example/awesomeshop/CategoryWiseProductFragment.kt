@@ -42,7 +42,7 @@ class CategoryWiseProductFragment : Fragment() {
         binding.categoryWiseProductFragmentToolBer.root.setOnMenuItemClickListener { item ->
             when(item.itemId){
                 R.id.action_cart -> {
-                    val action = CategoryWiseProductFragmentDirections.actionCategoryWiseProductFragmentToCartsFragment()
+                    val action = CategoryWiseProductFragmentDirections.actionCategoryWiseProductFragmentToCartsFragment(id)
                     findNavController().navigate(action)
                     true
                 }

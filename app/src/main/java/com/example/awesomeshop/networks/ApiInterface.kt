@@ -1,5 +1,6 @@
 package com.example.awesomeshop.networks
 
+import com.example.awesomeshop.models.cart.CartResponse
 import com.example.awesomeshop.models.login.LoginRequest
 import com.example.awesomeshop.models.login.LoginResponse
 import com.example.awesomeshop.models.product.ProductsResponse
@@ -27,4 +28,7 @@ interface ApiInterface {
 
     @GET("products/{id}")
     suspend fun getProductDetails(@Path("id") id: Int): Response<ProductsResponseItem>
+    @GET("carts/{id}")
+    suspend fun getCart(@Path("id") id: Int): Response<CartResponse>
+
 }

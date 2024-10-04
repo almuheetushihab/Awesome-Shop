@@ -41,7 +41,7 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
         binding.homeToolBer.root.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_cart -> {
-                    val action = HomeFragmentDirections.actionHomeFragmentToCartsFragment()
+                    val action = HomeFragmentDirections.actionHomeFragmentToCartsFragment(id)
                     findNavController().navigate(action)
                     true
                 }
