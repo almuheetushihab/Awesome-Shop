@@ -7,35 +7,6 @@ import com.example.awesomeshop.models.product.ProductsResponseItem
 import com.example.awesomeshop.reposatories.CartRepository
 import kotlinx.coroutines.launch
 
-
-
-
-
-//class CartViewModel(private val cartRepository: CartRepository) : ViewModel() {
-//
-//    private val _cartData = MutableLiveData<CartResponse>()
-//    val cartData: LiveData<CartResponse> = _cartData
-//
-//    fun fetchCart(cartId: Int) {
-//        viewModelScope.launch {
-//            val response = cartRepository.getCart(cartId)
-//            if (response.isSuccessful) {
-//                _cartData.value = response.body()
-//            }
-//        }
-//    }
-//}
-
-
-
-
-
-
-
-
-
-
-
 class CartViewModel(private val repository: CartRepository) : ViewModel() {
 
     val items = MutableLiveData<List<ProductsResponseItem>>()

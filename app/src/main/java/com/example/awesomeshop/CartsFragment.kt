@@ -62,7 +62,7 @@ class CartsFragment : Fragment() {
         viewModel = CartViewModel(cartRepository)
         val cartId = args.data
         Log.d("cartId", "onViewCreated: $cartId")
-        viewModel.cartData(2)
+        viewModel.cartData(4)
         viewModel.items.observe(viewLifecycleOwner) {
             it?.let {
                 Log.d("data", "onViewCreated: $it")
@@ -72,7 +72,7 @@ class CartsFragment : Fragment() {
             }
         }
 
-        binding.tvKey.text = "Total :"
+        binding.tvKey.text = "Total Price :"
         binding.tvValue.text = "200tk"
 
     }
