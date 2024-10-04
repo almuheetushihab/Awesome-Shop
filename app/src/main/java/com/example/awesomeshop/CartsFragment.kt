@@ -56,19 +56,25 @@ class CartsFragment : Fragment() {
         }
         val recyclerView: RecyclerView = binding.cartRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
+        cartsAdapter = CartsAdapter()
         viewModel = CartViewModel(CartRepository())
         val cartRepository = CartRepository()
         viewModel = CartViewModel(cartRepository)
         val cartId = args.data
-        viewModel.fetchCartData(cartId)
-        viewModel.cartItems.observe(viewLifecycleOwner) {
+        Log.d("cartId", "onViewCreated: $cartId")
+        viewModel.cartData(2)
+        viewModel.items.observe(viewLifecycleOwner) {
             it?.let {
+                Log.d("data", "onViewCreated: $it")
                 cartsAdapter.setValues(it)
                 recyclerView.adapter = cartsAdapter
                 Log.d("cart", "onViewCreated: $it")
             }
         }
+
+        binding.tvKey.text = "Total :"
+        binding.tvValue.text = "200tk"
+
     }
 
     private fun logout() {

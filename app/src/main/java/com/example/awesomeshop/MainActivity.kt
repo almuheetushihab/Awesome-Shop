@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel = CartViewModel(CartRepository())
-        viewModel.fetchCartData(5)
-        viewModel.cartItems.observe(this) {
+        viewModel.cartData(5)
+        viewModel.items.observe(this) {
             it?.let {
                 Log.d("cart", "cart: $it")
             }

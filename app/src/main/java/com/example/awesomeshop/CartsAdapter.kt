@@ -20,9 +20,14 @@ class CartsAdapter : RecyclerView.Adapter<CartsAdapter.ViewHolder>() {
         val item = cartList[position]
 
         viewHolder.binding.tvProductName.text = item.title
+        viewHolder.binding.tvPriceKey.text = "Price :"
         viewHolder.binding.tvPriceValue.text = "${item.price} tk"
-        viewHolder.binding.tvQuantityValue.text = "Quantity: ${item.rating.count}"
+        viewHolder.binding.tvQuantityKey.text = "Quantity :"
+        viewHolder.binding.tvQuantityValue.text = "${item.rating.count} qunty"
+        viewHolder.binding.tvTotalKey.text = "Total :"
         viewHolder.binding.tvTotalValue.text = "${item.price * item.rating.count} tk"
+        viewHolder.binding.btnDecrement.text = "-"
+        viewHolder.binding.btnIncrement.text = "+"
     }
 
     override fun getItemCount(): Int {

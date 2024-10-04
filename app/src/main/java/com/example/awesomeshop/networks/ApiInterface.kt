@@ -28,6 +28,7 @@ interface ApiInterface {
 
     @GET("products/{id}")
     suspend fun getProductDetails(@Path("id") id: Int): Response<ProductsResponseItem>
+
     @GET("carts/{id}")
     suspend fun getCart(@Path("id") id: Int): Response<CartResponse>
 

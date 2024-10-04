@@ -1,10 +1,8 @@
 package com.example.awesomeshop.viewModel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.awesomeshop.models.cart.CartResponse
 import com.example.awesomeshop.models.product.ProductsResponseItem
 import com.example.awesomeshop.reposatories.CartRepository
 import kotlinx.coroutines.launch
@@ -40,9 +38,9 @@ import kotlinx.coroutines.launch
 
 class CartViewModel(private val repository: CartRepository) : ViewModel() {
 
-    val cartItems = MutableLiveData<List<ProductsResponseItem>>()
+    val items = MutableLiveData<List<ProductsResponseItem>>()
 
-    fun fetchCartData(cartId: Int) {
+    fun cartData(cartId: Int) {
         viewModelScope.launch {
             val response = repository.getCart(cartId)
             if (response.isSuccessful) {
@@ -60,7 +58,7 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
                         }
                     }
 
-                    cartItems.postValue(productList)
+                    items.postValue(productList)
                 }
             }
         }
