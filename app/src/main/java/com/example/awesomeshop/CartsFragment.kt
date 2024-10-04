@@ -56,8 +56,6 @@ class CartsFragment : Fragment() {
         }
         val recyclerView: RecyclerView = binding.cartRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        cartsAdapter = CartsAdapter()
-        recyclerView.adapter = cartsAdapter
 
         viewModel = CartViewModel(CartRepository())
         val cartRepository = CartRepository()

@@ -89,7 +89,10 @@ class LoginFragment : Fragment() {
     }
 
     private fun navigateToHomeFragment() {
+        val username = binding.etUsername.text.toString()
+        val password = binding.etPassword.text.toString()
         val fullName = binding.etFullName.text.toString()
+        sharedPreference.saveCredentials(username, password, fullName)
         val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(fullName)
         findNavController().navigate(action)
     }

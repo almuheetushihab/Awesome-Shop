@@ -32,6 +32,9 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        sharedPreferences = SharedPreferenceHelper(requireContext())
+        val fullName = arguments?.getString("fullName") ?: sharedPreferences.getFullName()
+        binding.tvWelcome.text = "Welcome, $fullName"
         return binding.root
     }
 
@@ -57,8 +60,8 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
 
         sharedPreferences = SharedPreferenceHelper(requireContext())
 
-        val fullName = args.data
-        binding.tvWelcome.text = "Welcome, $fullName"
+//        val fullName = args.data
+//        binding.tvWelcome.text = "Welcome, $fullName"
 
         val recyclerView: RecyclerView = binding.rvCategories
         recyclerView.layoutManager =
