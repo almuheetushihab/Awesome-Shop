@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_homeFragment_to_cartsFragment"
             app:destination="@id/cartsFragment" />
+        <argument
+            android:name="carts"
+            app:argType="com.example.awesomeshop.models.cart.CartResponse" />
     </fragment>
     <fragment
         android:id="@+id/categoryWiseProductFragment"
@@ -54,6 +57,9 @@
         <action
             android:id="@+id/action_categoryWiseProductFragment_to_cartsFragment"
             app:destination="@id/cartsFragment" />
+        <argument
+            android:name="dataId"
+            app:argType="com.example.awesomeshop.models.cart.CartResponse" />
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
@@ -80,6 +86,6 @@
             app:destination="@id/loginFragment" />
         <argument
             android:name="data"
-            app:argType="integer" />
+            app:argType="com.example.awesomeshop.models.cart.CartResponse" />
     </fragment>
 </navigation>

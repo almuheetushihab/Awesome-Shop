@@ -60,9 +60,11 @@ class CartsFragment : Fragment() {
         viewModel = CartViewModel(CartRepository())
         val cartRepository = CartRepository()
         viewModel = CartViewModel(cartRepository)
-        val cartId = args.data
-        Log.d("cartId", "onViewCreated: $cartId")
-        viewModel.cartData(4)
+        val cartList = args.data
+        val cartId = cartList.id
+
+        Log.d("cartId", "onViewCreated: $cartList")
+        viewModel.cartData(cartId)
         viewModel.items.observe(viewLifecycleOwner) {
             it?.let {
                 Log.d("data", "onViewCreated: $it")

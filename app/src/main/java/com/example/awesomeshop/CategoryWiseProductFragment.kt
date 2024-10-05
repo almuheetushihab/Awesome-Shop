@@ -39,10 +39,12 @@ class CategoryWiseProductFragment : Fragment() {
         binding.categoryWiseProductFragmentToolBer.toolBerBackBtn.setOnClickListener {
             requireActivity().onBackPressed()
         }
+
         binding.categoryWiseProductFragmentToolBer.root.setOnMenuItemClickListener { item ->
             when(item.itemId){
                 R.id.action_cart -> {
-                    val action = CategoryWiseProductFragmentDirections.actionCategoryWiseProductFragmentToCartsFragment(id)
+
+                    val action = CategoryWiseProductFragmentDirections.actionCategoryWiseProductFragmentToCartsFragment()
                     findNavController().navigate(action)
                     true
                 }

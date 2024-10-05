@@ -38,5 +38,6 @@ class CategoriesAdapter() : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>()
 
     interface ItemClickListener {
         fun onItemClick(category: String)
+
     }
 }
