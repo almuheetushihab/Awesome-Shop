@@ -17,6 +17,8 @@ import com.example.awesomeshop.reposatories.ProductRepository
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.CategoriesViewModel
 import com.example.awesomeshop.viewModel.ProductViewModel
+import dagger.hilt.android.AndroidEntryPoint
+
 
 class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAdapter.OnItemClickListener {
     private lateinit var binding: FragmentHomeBinding
@@ -33,18 +35,22 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         sharedPreferences = SharedPreferenceHelper(requireContext())
-        val fullName = arguments?.getString("fullName") ?: sharedPreferences.getFullName()
-        binding.tvWelcome.text = "Welcome, $fullName"
+
+//        val fullName = sharedPreferences.getFullName()
+//        binding.tvWelcome.text = "Welcome, $fullName"
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         binding.homeToolBer.root.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_cart -> {
-                    val action = HomeFragmentDirections.actionHomeFragmentToCartsFragment(id)
+                    val cartId = 1
+                    val action = HomeFragmentDirections.actionHomeFragmentToCartsFragment(cartId)
                     findNavController().navigate(action)
                     true
                 }
@@ -60,8 +66,10 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
 
         sharedPreferences = SharedPreferenceHelper(requireContext())
 
-//        val fullName = args.data
-//        binding.tvWelcome.text = "Welcome, $fullName"
+        val fullName = args.data
+        binding.tvWelcome.text = "Welcome, $fullName"
+        val prefFullName = sharedPreferences.getFullName()
+        binding.tvWelcome.text = "Welcome, $prefFullName"
 
         val recyclerView: RecyclerView = binding.rvCategories
         recyclerView.layoutManager =

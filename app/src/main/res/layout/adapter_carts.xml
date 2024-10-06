@@ -126,7 +126,8 @@
                 android:layout_height="48dp"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textSize="30sp"
+                android:textSize="38sp"
+                android:text="@string/minues"
                 tools:text="@string/minues" />
 
 
@@ -137,6 +138,7 @@
                 android:layout_marginStart="16dp"
                 android:textAlignment="textEnd"
                 tools:text="@string/plus"
+                android:text="@string/plus"
                 android:textColor="@color/black"
                 android:textSize="38sp" />
         </LinearLayout>

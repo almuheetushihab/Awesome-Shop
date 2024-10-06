@@ -1,5 +1,6 @@
 package com.example.awesomeshop
 
+import CartsAdapter
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,7 +17,7 @@ import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.CartViewModel
 
 
-class CartsFragment : Fragment() {
+class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
     private lateinit var binding: FragmentCartsListBinding
     private lateinit var cartsAdapter: CartsAdapter
     private lateinit var viewModel: CartViewModel
@@ -45,38 +46,35 @@ class CartsFragment : Fragment() {
                     findNavController().navigate(action)
                     true
                 }
-
                 R.id.action_logout -> {
                     logout()
                     true
                 }
-
                 else -> false
             }
         }
+
+
         val recyclerView: RecyclerView = binding.cartRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        cartsAdapter = CartsAdapter()
-        viewModel = CartViewModel(CartRepository())
-        val cartRepository = CartRepository()
-        viewModel = CartViewModel(cartRepository)
-        val cartList = args.data
-        val cartId = cartList.id
+        cartsAdapter = CartsAdapter(this)
 
-        Log.d("cartId", "onViewCreated: $cartList")
+        viewModel = CartViewModel(CartRepository())
+        val cartId = args.cartId
         viewModel.cartData(cartId)
         viewModel.items.observe(viewLifecycleOwner) {
             it?.let {
-                Log.d("data", "onViewCreated: $it")
                 cartsAdapter.setValues(it)
                 recyclerView.adapter = cartsAdapter
-                Log.d("cart", "onViewCreated: $it")
             }
         }
 
         binding.tvKey.text = "Total Price :"
-        binding.tvValue.text = "200tk"
-
+        binding.tvValue.text = "0 tk"
+        binding.orderBtn.setOnClickListener {
+            val action = CartsFragmentDirections.actionCartsFragmentToHomeFragment()
+            findNavController().navigate(action)
+        }
     }
 
     private fun logout() {
@@ -84,7 +82,9 @@ class CartsFragment : Fragment() {
         sharedPreferences.clearCredentials()
         val action = CartsFragmentDirections.actionCartsFragmentToLoginFragment()
         findNavController().navigate(action)
+    }
 
-
+    override fun updateTotalPrice(totalPrice: Double) {
+        binding.tvValue.text = "$totalPrice tk"
     }
 }

@@ -29,4 +29,7 @@ class SharedPreferenceHelper(context: Context) {
     fun clearCredentials() {
         sharedPreferences.edit().clear().apply()
     }
+    fun getId(){
+        sharedPreferences.getInt("id",4)
+    }
 }

@@ -8,7 +8,6 @@ import com.example.awesomeshop.reposatories.CartRepository
 import kotlinx.coroutines.launch
 
 class CartViewModel(private val repository: CartRepository) : ViewModel() {
-
     val items = MutableLiveData<List<ProductsResponseItem>>()
 
     fun cartData(cartId: Int) {

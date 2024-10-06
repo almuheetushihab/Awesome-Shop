@@ -39,7 +39,7 @@ class ProductDetailsFragment : Fragment() {
         binding.productToolBer.root.setOnMenuItemClickListener { item ->
             when(item.itemId){
                 R.id.action_cart -> {
-                    val action = ProductDetailsFragmentDirections.actionProductDetailsFragmentToCartsFragment(id)
+                    val action = ProductDetailsFragmentDirections.actionProductDetailsFragmentToCartsFragment(1)
                     findNavController().navigate(action)
                     true
                 }

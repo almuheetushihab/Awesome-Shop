@@ -5,8 +5,4 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class AwesomeShopApp : Application() {
-    override fun onCreate() {
-        super.onCreate()
-
-    }
 }

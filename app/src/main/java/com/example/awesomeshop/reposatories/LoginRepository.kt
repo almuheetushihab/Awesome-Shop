@@ -7,8 +7,6 @@ import com.example.awesomeshop.networks.ApiInterface
 import retrofit2.Response
 
 class LoginRepository {
-
-
     suspend fun login(username: String, password: String): Response<LoginResponse> {
         val loginApi = ApiClient.getInstance().create(ApiInterface::class.java)
         return loginApi.login(LoginRequest(username, password))

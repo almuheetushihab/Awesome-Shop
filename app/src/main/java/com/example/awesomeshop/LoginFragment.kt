@@ -13,6 +13,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.awesomeshop.databinding.FragmentLoginBinding
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
+
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -61,6 +63,7 @@ class LoginFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT)
                     .show()
             }
+
         }
 
 
@@ -101,7 +104,7 @@ class LoginFragment : Fragment() {
         val savedFullName = sharedPreference.getFullName()
         val savedUsername = sharedPreference.getUsername()
         val savedPassword = sharedPreference.getPassword()
-        if (!savedUsername.isNullOrEmpty() && !savedPassword.isNullOrEmpty()) {
+        if (!savedUsername.isNullOrEmpty() && !savedPassword.isNullOrEmpty() && !savedFullName.isNullOrEmpty()) {
 
             binding.etFullName.setText(savedFullName)
             binding.etUsername.setText(savedUsername)
