@@ -10,21 +10,20 @@
         layout="@layout/custom_toolber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryWiseProductFragment_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
+        android:layout_height="0dp"
+        android:paddingBottom="8dp"
         android:clipToPadding="false"
         android:layout_margin="8dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/categoryWiseProductFragment_toolBer"
-        tools:listitem="@layout/category_wise_product_adapter"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/category_wise_product_adapter" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

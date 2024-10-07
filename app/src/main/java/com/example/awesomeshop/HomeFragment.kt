@@ -83,13 +83,14 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
         ProductAdapter.listener = this
 
         viewModel = CategoriesViewModel(CategoriesRepository())
-
         viewModel.getCategories()
         viewModel.items.observe(viewLifecycleOwner) {
             it?.let {
                 adapter = CategoriesAdapter()
                 adapter.setCategoryList(it)
                 recyclerView.adapter = adapter
+                binding.loadingId.root.visibility = View.GONE
+                binding.rvCategories.visibility = View.VISIBLE
                 Log.d("categories", "onViewCreated: $it")
             }
         }
@@ -101,6 +102,8 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
                 productAdapter = ProductAdapter()
                 productAdapter.setProductList(it)
                 productRecyclerView.adapter = productAdapter
+                binding.loadingId.root.visibility = View.GONE
+                binding.rvProducts.visibility = View.VISIBLE
                 Log.d("products", "onViewCreated: $it")
             }
         }

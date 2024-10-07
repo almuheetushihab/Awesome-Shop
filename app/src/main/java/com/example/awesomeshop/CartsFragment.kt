@@ -12,9 +12,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.awesomeshop.databinding.FragmentCartsListBinding
 import com.example.awesomeshop.models.cart.CartResponse
+import com.example.awesomeshop.models.product.ProductsResponseItem
 import com.example.awesomeshop.reposatories.CartRepository
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.CartViewModel
+import java.util.ArrayList
 
 
 class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
@@ -64,6 +66,8 @@ class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
         viewModel.cartData(cartId)
         viewModel.items.observe(viewLifecycleOwner) {
             it?.let {
+//                var list   = it as ArrayList<ProductsResponseItem>
+//                list.addAll(it)
                 cartsAdapter.setValues(it)
                 recyclerView.adapter = cartsAdapter
             }

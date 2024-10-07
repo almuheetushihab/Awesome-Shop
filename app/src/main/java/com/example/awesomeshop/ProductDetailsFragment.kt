@@ -75,4 +75,5 @@ class ProductDetailsFragment : Fragment() {
         val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
         findNavController().navigate(action)
     }
+
 }

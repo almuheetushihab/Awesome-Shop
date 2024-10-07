@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
+
+
     <include
         android:id="@+id/homeToolBer"
         layout="@layout/custom_toolber"
@@ -14,6 +16,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/loading_id"
+        layout="@layout/loading_activity"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/tv_Welcome"
@@ -58,6 +69,7 @@
         tools:listitem="@layout/categories_adapter" />
 
 
+
     <TextView
         android:id="@+id/tv_Products"
         android:layout_width="match_parent"
@@ -77,7 +89,7 @@
         android:id="@+id/rv_Products"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
+        android:paddingBottom="8dp"
         android:clipToPadding="false"
         android:layout_margin="8dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -86,6 +98,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_Products"
         tools:listitem="@layout/product_adapter" />
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
