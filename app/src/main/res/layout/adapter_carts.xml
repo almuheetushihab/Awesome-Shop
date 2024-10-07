@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +7,7 @@
     android:layout_margin="12dp"
     tools:context=".CartsAdapter">
 
-  <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp">
@@ -20,18 +19,18 @@
             android:text="@string/product_name"
             android:textSize="14sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/product_price_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvProductName">
 
             <TextView
@@ -47,20 +46,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="14sp"
                 android:textAlignment="textEnd"
+                android:textSize="14sp"
                 tools:text="100tk" />
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/product_Quantity_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="5dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/product_price_layout">
 
             <TextView
@@ -76,8 +74,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="14sp"
                 android:textAlignment="textEnd"
+                android:textSize="14sp"
                 tools:text="2 qunty" />
         </LinearLayout>
 
@@ -85,10 +83,10 @@
             android:id="@+id/product_total_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="5dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/product_Quantity_layout">
 
             <TextView
@@ -104,46 +102,44 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="14sp"
                 android:textAlignment="textEnd"
+                android:textSize="14sp"
                 tools:text="200tk" />
         </LinearLayout>
-
-
-
 
         <LinearLayout
             android:id="@+id/quantity_buttons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/product_total_layout"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_total_layout">
 
-            <TextView
+            <Button
                 android:id="@+id/btnDecrement"
-                android:layout_width="wrap_content"
+                android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:textAlignment="textEnd"
-                android:textColor="@color/black"
-                android:textSize="38sp"
+                android:padding="5dp"
+                android:background="@drawable/ripple_effect"
                 android:text="@string/minues"
-                tools:text="@string/minues" />
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
-
-            <TextView
+            <Button
                 android:id="@+id/btnIncrement"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="16dp"
-                android:textAlignment="textEnd"
-                tools:text="@string/plus"
+                android:padding="5dp"
+                android:background="@drawable/ripple_effect"
                 android:text="@string/plus"
-                android:textColor="@color/black"
-                android:textSize="38sp" />
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
         </LinearLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 </androidx.cardview.widget.CardView>

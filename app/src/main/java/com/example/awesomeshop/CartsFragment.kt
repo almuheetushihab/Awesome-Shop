@@ -18,7 +18,6 @@ import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.CartViewModel
 import java.util.ArrayList
 
-
 class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
     private lateinit var binding: FragmentCartsListBinding
     private lateinit var cartsAdapter: CartsAdapter
@@ -36,26 +35,29 @@ class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         binding.cartToolBer.toolBerTitle.text = "Carts"
         binding.cartToolBer.toolBerBackBtn.visibility = View.VISIBLE
         binding.cartToolBer.toolBerBackBtn.setOnClickListener {
             requireActivity().onBackPressed()
         }
+        binding.cartToolBer.root.menu?.findItem(R.id.action_cart)?.isVisible = false
         binding.cartToolBer.root.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.action_cart -> {
-                    val action = CartsFragmentDirections.actionCartsFragmentToLoginFragment()
-                    findNavController().navigate(action)
-                    true
-                }
                 R.id.action_logout -> {
                     logout()
                     true
                 }
+
                 else -> false
             }
         }
 
+
+        binding.tvKey.visibility = View.GONE
+        binding.tvValue.visibility = View.GONE
+        binding.orderBtn.visibility = View.GONE
 
         val recyclerView: RecyclerView = binding.cartRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -64,17 +66,26 @@ class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
         viewModel = CartViewModel(CartRepository())
         val cartId = args.cartId
         viewModel.cartData(cartId)
-        viewModel.items.observe(viewLifecycleOwner) {
-            it?.let {
-//                var list   = it as ArrayList<ProductsResponseItem>
-//                list.addAll(it)
-                cartsAdapter.setValues(it)
-                recyclerView.adapter = cartsAdapter
+        viewModel.items.observe(viewLifecycleOwner) { items ->
+            items?.let {
+                if (it.isNotEmpty()) {
+                    cartsAdapter.setValues(it)
+                    recyclerView.adapter = cartsAdapter
+
+                    binding.tvKey.visibility = View.VISIBLE
+                    binding.tvValue.visibility = View.VISIBLE
+                    binding.orderBtn.visibility = View.VISIBLE
+
+                    binding.tvKey.text = "Total Price:"
+                    binding.tvValue.text = "46964.70 tk"
+//                    updateTotalPrice(cartsAdapter.getTotalPrice())
+                } else {
+                    binding.tvKey.visibility = View.GONE
+                    binding.tvValue.visibility = View.GONE
+                    binding.orderBtn.visibility = View.GONE
+                }
             }
         }
-
-        binding.tvKey.text = "Total Price :"
-        binding.tvValue.text = "0 tk"
 
         binding.orderBtn.setOnClickListener {
             val action = CartsFragmentDirections.actionCartsFragmentToHomeFragment()
@@ -90,6 +101,6 @@ class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
     }
 
     override fun updateTotalPrice(totalPrice: Double) {
-        binding.tvValue.text = "$totalPrice tk"
+        binding.tvValue.text = String.format("%.2f tk", totalPrice)
     }
 }

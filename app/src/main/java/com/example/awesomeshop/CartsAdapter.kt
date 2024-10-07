@@ -20,20 +20,19 @@ class CartsAdapter(private val totalPriceUpdater: TotalPriceUpdater) : RecyclerV
         item.quantity = quantity
         var productPrice = item.price * quantity
 
-        viewHolder.binding.tvProductName.text = item.title
+        viewHolder.binding.tvProductName.text = "Title :${item.title}"
         viewHolder.binding.tvPriceKey.text = "Price :"
         viewHolder.binding.tvPriceValue.text = "${item.price} tk"
         viewHolder.binding.tvQuantityKey.text = "Quantity :"
         viewHolder.binding.tvQuantityValue.text = "$quantity pcs"
         viewHolder.binding.tvTotalKey.text = "Total :"
         viewHolder.binding.tvTotalValue.text = "$productPrice tk"
-
         viewHolder.binding.btnIncrement.setOnClickListener {
             quantity++
             item.quantity = quantity
             productPrice = item.price * quantity
             viewHolder.binding.tvQuantityValue.text = "$quantity pcs"
-            viewHolder.binding.tvTotalValue.text = "$productPrice tk"
+            viewHolder.binding.tvTotalValue.text = String.format("%.2f tk", productPrice)
             updateTotalCartValue()
         }
 
@@ -43,15 +42,15 @@ class CartsAdapter(private val totalPriceUpdater: TotalPriceUpdater) : RecyclerV
                 item.quantity = quantity
                 productPrice = item.price * quantity
                 viewHolder.binding.tvQuantityValue.text = "$quantity pcs"
-                viewHolder.binding.tvTotalValue.text = "$productPrice tk"
+                viewHolder.binding.tvTotalValue.text = String.format("%.2f tk", productPrice)
                 updateTotalCartValue()
             }
         }
     }
 
-    private fun updateTotalCartValue() {
+   private fun updateTotalCartValue() {
         val totalPrice = cartList.sumByDouble { it.price * it.quantity }
-        val formattedTotalPrice = String.format("%.3f", totalPrice).toDouble()
+        val formattedTotalPrice = String.format("%.2f", totalPrice).toDouble()
         totalPriceUpdater.updateTotalPrice(formattedTotalPrice)
     }
 
@@ -62,11 +61,15 @@ class CartsAdapter(private val totalPriceUpdater: TotalPriceUpdater) : RecyclerV
 
     fun setValues(products: List<ProductsResponseItem>) {
         this.cartList = ArrayList(products)
+        updateTotalCartValue()
         notifyDataSetChanged()
     }
 
     interface TotalPriceUpdater {
         fun updateTotalPrice(totalPrice: Double)
+    }
+    fun getTotalPrice(): Double {
+        return cartList.sumByDouble { it.price * it.quantity }
     }
 }
 

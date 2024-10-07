@@ -35,6 +35,7 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         sharedPreferences = SharedPreferenceHelper(requireContext())
+        setHasOptionsMenu(false)
 
 //        val fullName = sharedPreferences.getFullName()
 //        binding.tvWelcome.text = "Welcome, $fullName"

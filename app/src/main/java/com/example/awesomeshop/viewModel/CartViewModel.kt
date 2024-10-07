@@ -5,10 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.awesomeshop.models.product.ProductsResponseItem
 import com.example.awesomeshop.reposatories.CartRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.logging.Handler
 
 class CartViewModel(private val cartRepository: CartRepository) : ViewModel() {
     val items = MutableLiveData<List<ProductsResponseItem>>()
+
 
     fun cartData(cartId: Int) {
         viewModelScope.launch {
@@ -33,3 +36,5 @@ class CartViewModel(private val cartRepository: CartRepository) : ViewModel() {
         }
     }
 }
+
+
