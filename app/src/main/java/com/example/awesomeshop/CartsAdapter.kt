@@ -51,8 +51,10 @@ class CartsAdapter(private val totalPriceUpdater: TotalPriceUpdater) : RecyclerV
 
     private fun updateTotalCartValue() {
         val totalPrice = cartList.sumByDouble { it.price * it.quantity }
-        totalPriceUpdater.updateTotalPrice(totalPrice)
+        val formattedTotalPrice = String.format("%.3f", totalPrice).toDouble()
+        totalPriceUpdater.updateTotalPrice(formattedTotalPrice)
     }
+
 
     override fun getItemCount(): Int {
         return cartList.size

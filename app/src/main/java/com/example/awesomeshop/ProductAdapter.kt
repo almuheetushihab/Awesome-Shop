@@ -24,7 +24,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
         return ViewHolder(binding)
     }
 
-    @SuppressLint("SetTextI18n")
+
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val product = productList[position]
 
@@ -45,7 +45,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
         return productList.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+
     fun setProductList(product: ArrayList<ProductsResponseItem>) {
         this.productList = ArrayList(product)
         notifyDataSetChanged()

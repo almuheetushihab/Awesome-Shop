@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.awesomeshop.databinding.CategoryWiseProductAdapterBinding
-import com.example.awesomeshop.models.product.ProductsResponse
 import com.example.awesomeshop.models.product.ProductsResponseItem
 
 class CategoryWiseProductAdapter : RecyclerView.Adapter<CategoryWiseProductAdapter.ViewHolder>() {

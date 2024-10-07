@@ -7,7 +7,7 @@ import com.example.awesomeshop.models.product.ProductsResponse
 import com.example.awesomeshop.reposatories.ProductRepository
 import kotlinx.coroutines.launch
 
-class ProductViewModel(val productRepository: ProductRepository) : ViewModel() {
+class ProductViewModel(private val productRepository: ProductRepository) : ViewModel() {
 
 
     private val _items: MutableLiveData<ProductsResponse?> by lazy {

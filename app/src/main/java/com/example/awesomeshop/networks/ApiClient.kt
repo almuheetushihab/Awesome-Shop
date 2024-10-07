@@ -9,6 +9,5 @@ object ApiClient {
         return Retrofit.Builder().baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
     }
 }

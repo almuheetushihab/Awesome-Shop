@@ -2,7 +2,6 @@ package com.example.awesomeshop
 
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.awesomeshop.databinding.FragmentLoginBinding
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.LoginViewModel
-import dagger.hilt.android.AndroidEntryPoint
 
 
 class LoginFragment : Fragment() {
