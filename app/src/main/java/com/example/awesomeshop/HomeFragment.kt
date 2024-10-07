@@ -45,6 +45,7 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        val cartArgs = args.cart
 
         binding.homeToolBer.root.setOnMenuItemClickListener { item ->
             when (item.itemId) {

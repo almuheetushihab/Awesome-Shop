@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.awesomeshop.databinding.FragmentCartsListBinding
+import com.example.awesomeshop.models.cart.CartResponse
 import com.example.awesomeshop.reposatories.CartRepository
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.CartViewModel
@@ -70,6 +71,7 @@ class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
 
         binding.tvKey.text = "Total Price :"
         binding.tvValue.text = "0 tk"
+
         binding.orderBtn.setOnClickListener {
             val action = CartsFragmentDirections.actionCartsFragmentToHomeFragment()
             findNavController().navigate(action)
