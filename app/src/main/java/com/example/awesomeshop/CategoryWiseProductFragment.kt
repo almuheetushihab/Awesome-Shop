@@ -54,6 +54,7 @@ class CategoryWiseProductFragment : Fragment() {
         }
 
 
+        binding.loadingView.root.visibility = View.VISIBLE
         val category = args.data
         val recyclerView: RecyclerView = binding.categoryWiseProductFragmentRecyclerView
         recyclerView.layoutManager = GridLayoutManager(context, 2)
@@ -65,6 +66,7 @@ class CategoryWiseProductFragment : Fragment() {
             it?.let {
                 categoryWiseProductAdapter.setProductList(it)
                 recyclerView.adapter = categoryWiseProductAdapter
+                binding.loadingView.root.visibility = View.GONE
             }
         }
     }

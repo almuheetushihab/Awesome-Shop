@@ -20,10 +20,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/homeToolBer"
@@ -35,11 +35,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:text="@string/categories"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_Welcome" />
 
@@ -47,14 +47,14 @@
         android:id="@+id/categoriesLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_Categories"
+        app:layout_constraintBottom_toTopOf="@+id/tv_Products"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tv_Products">
+        app:layout_constraintTop_toBottomOf="@id/tv_Categories">
 
         <include
-            layout="@layout/loading_activity"
             android:id="@+id/loadingCategories"
+            layout="@layout/loading_activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible" />
@@ -65,13 +65,13 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:clipToPadding="false"
-            android:visibility="gone"
             android:orientation="horizontal"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/categories_adapter"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/loadingCategories" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loadingCategories"
+            tools:listitem="@layout/categories_adapter" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -80,11 +80,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:text="@string/products"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/categoriesLayout" />
 
@@ -92,13 +92,13 @@
         android:id="@+id/productsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_Products"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_Products">
 
         <include
-            layout="@layout/loading_activity"
             android:id="@+id/loadingProducts"
+            layout="@layout/loading_activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible" />
@@ -110,11 +110,10 @@
             android:layout_margin="8dp"
             android:clipToPadding="false"
             android:visibility="gone"
-            android:paddingBottom="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/product_adapter"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/loadingProducts"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            tools:listitem="@layout/product_adapter" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
