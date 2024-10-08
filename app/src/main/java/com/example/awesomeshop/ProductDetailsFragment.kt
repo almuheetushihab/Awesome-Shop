@@ -72,8 +72,9 @@ class ProductDetailsFragment : Fragment() {
     private fun logout() {
         sharedPreferences = SharedPreferenceHelper(requireContext())
         sharedPreferences.clearCredentials()
-        val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
+      val action = ProductDetailsFragmentDirections.actionProductDetailsFragmentToLoginFragment()
         findNavController().navigate(action)
+
     }
 
 }

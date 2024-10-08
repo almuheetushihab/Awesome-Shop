@@ -19,7 +19,6 @@ class LoginFragment : Fragment() {
     private val viewModel: LoginViewModel by viewModels()
     private lateinit var sharedPreference: SharedPreferenceHelper
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,8 +26,6 @@ class LoginFragment : Fragment() {
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         sharedPreference = SharedPreferenceHelper(requireContext())
-
-
         loadSavedCredentials()
         return binding.root
     }
@@ -43,6 +40,7 @@ class LoginFragment : Fragment() {
                 InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             binding.etPassword.setSelection(binding.etPassword.text.length)
         }
+
         binding.visibilityOff.setOnClickListener {
             binding.visibilityOff.visibility = View.GONE
             binding.visibilityOn.visibility = View.VISIBLE
@@ -54,46 +52,55 @@ class LoginFragment : Fragment() {
         binding.btnLogin.setOnClickListener {
             val username = binding.etUsername.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
+            val fullName = binding.etFullName.text.toString().trim()
 
-            if (username.isNotEmpty() && password.isNotEmpty()) {
+            if (validateInputs(username, password, fullName)) {
                 viewModel.login(username, password)
-            } else {
-                Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT)
-                    .show()
             }
-
         }
-
 
         viewModel.items.observe(viewLifecycleOwner) { response ->
             if (response.isSuccessful) {
-
                 val token = response.body()?.token
-                Toast.makeText(
-                    requireContext(),
-                    "Login Successful. Token: $token",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(requireContext(), "Login Successful. Token: $token", Toast.LENGTH_SHORT).show()
+
                 val fullName = binding.etFullName.text.toString()
                 val username = binding.etUsername.text.toString()
                 val password = binding.etPassword.text.toString()
+
                 sharedPreference.saveCredentials(username, password, fullName)
                 navigateToHomeFragment()
             } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Login Failed: ${response.message()}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(requireContext(), "Login Failed: ${response.message()}", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    private fun validateInputs(username: String, password: String, fullName: String): Boolean {
+        if (username.isEmpty() || password.isEmpty() || fullName.isEmpty()) {
+            Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (fullName[0].isDigit()) {
+            Toast.makeText(requireContext(), "Full Name cannot start with a number", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (fullName.trim().isEmpty()) {
+            Toast.makeText(requireContext(), "Full Name cannot contain only spaces", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (fullName.length < 3) {
+            Toast.makeText(requireContext(), "Full Name must contain at least three characters", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true
+    }
+
     private fun navigateToHomeFragment() {
-        val username = binding.etUsername.text.toString()
-        val password = binding.etPassword.text.toString()
         val fullName = binding.etFullName.text.toString()
-        sharedPreference.saveCredentials(username, password, fullName)
         val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(fullName)
         findNavController().navigate(action)
     }
@@ -102,8 +109,8 @@ class LoginFragment : Fragment() {
         val savedFullName = sharedPreference.getFullName()
         val savedUsername = sharedPreference.getUsername()
         val savedPassword = sharedPreference.getPassword()
-        if (!savedUsername.isNullOrEmpty() && !savedPassword.isNullOrEmpty() && !savedFullName.isNullOrEmpty()) {
 
+        if (!savedUsername.isNullOrEmpty() && !savedPassword.isNullOrEmpty() && !savedFullName.isNullOrEmpty()) {
             binding.etFullName.setText(savedFullName)
             binding.etUsername.setText(savedUsername)
             binding.etPassword.setText(savedPassword)

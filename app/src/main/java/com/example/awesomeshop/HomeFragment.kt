@@ -42,14 +42,12 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.loadingId.root.visibility = View.VISIBLE
+        binding.loadingCategories.root.visibility = View.VISIBLE
+        binding.loadingProducts.root.visibility = View.VISIBLE
         binding.rvCategories.visibility = View.GONE
         binding.rvProducts.visibility = View.GONE
-        binding.tvWelcome.visibility = View.GONE
-        binding.tvCategories.visibility = View.GONE
-        binding.tvProducts.visibility = View.GONE
 
-        fetchData()
+
 
         binding.homeToolBer.root.setOnMenuItemClickListener { item ->
             when (item.itemId) {
@@ -83,46 +81,53 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
         val productRecyclerView: RecyclerView = binding.rvProducts
         productRecyclerView.layoutManager = GridLayoutManager(context, 2)
 
+        fetchData()
+
         CategoriesAdapter.listener = this
         ProductAdapter.listener = this
     }
 
+
     private fun fetchData() {
         viewModel = CategoriesViewModel(CategoriesRepository())
+        productViewModel = ProductViewModel(ProductRepository())
+
+
         viewModel.getCategories()
-        viewModel.items.observe(viewLifecycleOwner) {
-            it?.let {
+        viewModel.items.observe(viewLifecycleOwner) { categories ->
+            categories?.let {
                 adapter = CategoriesAdapter()
                 adapter.setCategoryList(it)
                 binding.rvCategories.adapter = adapter
                 binding.rvCategories.visibility = View.VISIBLE
+                binding.loadingCategories.root.visibility = View.GONE
                 checkDataLoad()
-                Log.d("categories", "onViewCreated: $it")
             }
         }
 
-        productViewModel = ProductViewModel(ProductRepository())
+
         productViewModel.getProducts()
-        productViewModel.items.observe(viewLifecycleOwner) {
-            it?.let {
+        productViewModel.items.observe(viewLifecycleOwner) { products ->
+            products?.let {
                 productAdapter = ProductAdapter()
                 productAdapter.setProductList(it)
                 binding.rvProducts.adapter = productAdapter
                 binding.rvProducts.visibility = View.VISIBLE
+                binding.loadingProducts.root.visibility = View.GONE
                 checkDataLoad()
-                Log.d("products", "onViewCreated: $it")
             }
         }
     }
 
+
     private fun checkDataLoad() {
         if (binding.rvCategories.visibility == View.VISIBLE && binding.rvProducts.visibility == View.VISIBLE) {
-            binding.loadingId.root.visibility = View.GONE
             binding.tvWelcome.visibility = View.VISIBLE
             binding.tvCategories.visibility = View.VISIBLE
             binding.tvProducts.visibility = View.VISIBLE
         }
     }
+
 
     private fun logout() {
         sharedPreferences.clearCredentials()
