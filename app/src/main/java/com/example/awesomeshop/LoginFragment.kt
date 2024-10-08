@@ -81,8 +81,8 @@ class LoginFragment : Fragment() {
             Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
             return false
         }
-        if (fullName[0].isDigit()) {
-            Toast.makeText(requireContext(), "Full Name cannot start with a number", Toast.LENGTH_SHORT).show()
+        if (fullName.any { it.isDigit() }) {
+            Toast.makeText(requireContext(), "Full Name cannot contain numbers", Toast.LENGTH_SHORT).show()
             return false
         }
 

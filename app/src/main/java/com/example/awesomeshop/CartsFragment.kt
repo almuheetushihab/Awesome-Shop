@@ -65,12 +65,15 @@ class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
 
         viewModel = CartViewModel(CartRepository())
         val cartId = args.cartId
+        binding.cartLoading.root.visibility = View.VISIBLE
         viewModel.cartData(cartId)
         viewModel.items.observe(viewLifecycleOwner) { items ->
+            binding.cartLoading.root.visibility = View.GONE
             items?.let {
                 if (it.isNotEmpty()) {
                     cartsAdapter.setValues(it)
                     recyclerView.adapter = cartsAdapter
+                    binding.cartRecyclerView.visibility = View.VISIBLE
 
                     binding.tvKey.visibility = View.VISIBLE
                     binding.tvValue.visibility = View.VISIBLE
@@ -82,6 +85,7 @@ class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
 
 
                 } else {
+                    binding.cartRecyclerView.visibility = View.GONE
                     binding.tvKey.visibility = View.GONE
                     binding.tvValue.visibility = View.GONE
                     binding.orderBtn.visibility = View.GONE

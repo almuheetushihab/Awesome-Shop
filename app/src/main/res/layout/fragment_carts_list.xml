@@ -6,87 +6,89 @@
     tools:context=".CartsFragment">
 
 
+    <include
+        android:id="@+id/cartToolBer"
+        layout="@layout/custom_toolber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-        <include
-            android:id="@+id/cartToolBer"
-            layout="@layout/custom_toolber"
-            android:layout_width="match_parent"
+    <include
+        android:id="@+id/cartLoading"
+        layout="@layout/loading_activity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cart_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/carts_total_price_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cartToolBer"
+        tools:listitem="@layout/adapter_carts" />
+
+
+    <LinearLayout
+        android:id="@+id/carts_total_price_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/cart_recycler_view"
+        app:layout_constraintStart_toStartOf="@+id/cart_recycler_view"
+        app:layout_constraintTop_toBottomOf="@+id/cart_recycler_view">
+
+        <TextView
+            android:id="@+id/tv_key"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!--    <include-->
-        <!--        android:id="@+id/loading_id"-->
-        <!--        layout="@layout/loading_activity"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="120dp"-->
-        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/cart_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:layout_margin="8dp"
-            android:orientation="vertical"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cartToolBer"
-            app:layout_constraintBottom_toTopOf="@+id/carts_total_price_layout"
-            tools:listitem="@layout/adapter_carts" />
-
-
-        <LinearLayout
-            android:id="@+id/carts_total_price_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@+id/cart_recycler_view"
-            app:layout_constraintStart_toStartOf="@+id/cart_recycler_view"
-            app:layout_constraintTop_toBottomOf="@+id/cart_recycler_view">
-
-            <TextView
-                android:id="@+id/tv_key"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="5dp"
-                android:paddingEnd="0dp"
-                android:textSize="18sp"
-                tools:text="Total Price :" />
-
-            <TextView
-                android:id="@+id/tv_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="0dp"
-                android:paddingEnd="5dp"
-                android:textAlignment="textEnd"
-                android:textSize="18sp"
-                tools:text="200tk" />
-        </LinearLayout>
-
-
-        <Button
-            android:id="@+id/order_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_default"
-            android:padding="8dp"
-            android:text="@string/order"
-            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:paddingStart="5dp"
+            android:paddingEnd="0dp"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/carts_total_price_layout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            tools:text="Total Price :" />
+
+        <TextView
+            android:id="@+id/tv_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="0dp"
+            android:paddingEnd="5dp"
+            android:textAlignment="textEnd"
+            android:textSize="18sp"
+            tools:text="200tk" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/order_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:drawable/btn_default"
+        android:padding="8dp"
+        android:text="@string/order"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/carts_total_price_layout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
