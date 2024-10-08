@@ -12,8 +12,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.awesomeshop.databinding.FragmentLoginBinding
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val viewModel: LoginViewModel by viewModels()

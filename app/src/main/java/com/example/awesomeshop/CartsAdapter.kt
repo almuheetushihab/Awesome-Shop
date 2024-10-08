@@ -49,8 +49,8 @@ class CartsAdapter(private val totalPriceUpdater: TotalPriceUpdater) : RecyclerV
     }
 
    private fun updateTotalCartValue() {
-        val totalPrice = cartList.sumByDouble { it.price * it.quantity }
-        val formattedTotalPrice = String.format("%.2f", totalPrice).toDouble()
+        val totalPrice = cartList.sumOf { it.price * it.quantity }
+       val formattedTotalPrice = String.format("%.2f", totalPrice).toDouble()
         totalPriceUpdater.updateTotalPrice(formattedTotalPrice)
     }
 
@@ -70,7 +70,7 @@ class CartsAdapter(private val totalPriceUpdater: TotalPriceUpdater) : RecyclerV
         fun updateTotalPrice(totalPrice: Double)
     }
     fun getTotalPrice( ): Double {
-        return cartList.sumByDouble { it.price * it.quantity }
+        return cartList.sumOf { it.price * it.quantity }
     }
 }
 
