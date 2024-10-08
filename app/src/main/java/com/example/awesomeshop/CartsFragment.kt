@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.awesomeshop.databinding.FragmentCartsListBinding
@@ -94,6 +95,7 @@ class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
         }
 
         binding.orderBtn.setOnClickListener {
+            Toast.makeText(requireContext(), "Order Completed", Toast.LENGTH_SHORT).show()
             val action = CartsFragmentDirections.actionCartsFragmentToHomeFragment()
             findNavController().navigate(action)
         }

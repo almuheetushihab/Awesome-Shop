@@ -86,7 +86,7 @@ class LoginFragment : Fragment() {
             return false
         }
 
-        if (fullName.trim().isEmpty()) {
+        if (fullName.trim().isEmpty() || fullName.replace(" ", "").isEmpty()) {
             Toast.makeText(requireContext(), "Full Name cannot contain only spaces", Toast.LENGTH_SHORT).show()
             return false
         }

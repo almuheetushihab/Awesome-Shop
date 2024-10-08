@@ -50,6 +50,8 @@ class ProductDetailsFragment : Fragment() {
             }
         }
 
+        binding.productDetailsLoading.root.visibility = View.VISIBLE
+
         val id = args.data
         viewModel = ProductDetailsViewModel(ProductDetailsRepository())
         viewModel.getProductDetails(id)
@@ -64,6 +66,7 @@ class ProductDetailsFragment : Fragment() {
                 binding.productDescription.text = "Description : ${it.description}"
                 binding.tvKey.text = it.category
                 binding.tvValue.text = "Rating : ${it.rating.rate}%"
+                binding.productDetailsLoading.root.visibility = View.GONE
 
             }
         }
