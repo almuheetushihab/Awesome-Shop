@@ -17,7 +17,7 @@ class ProductDetailsFragment : Fragment() {
     private lateinit var binding: ProductsDetailsBinding
     private val args: ProductDetailsFragmentArgs by navArgs()
     private lateinit var viewModel: ProductDetailsViewModel
-    private lateinit var sharedPreferences : SharedPreferenceHelper
+    private lateinit var sharedPreferences: SharedPreferenceHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,16 +36,21 @@ class ProductDetailsFragment : Fragment() {
             requireActivity().onBackPressed()
         }
         binding.productToolBer.root.setOnMenuItemClickListener { item ->
-            when(item.itemId){
+            when (item.itemId) {
                 R.id.action_cart -> {
-                    val action = ProductDetailsFragmentDirections.actionProductDetailsFragmentToCartsFragment(1)
+                    val action =
+                        ProductDetailsFragmentDirections.actionProductDetailsFragmentToCartsFragment(
+                            1
+                        )
                     findNavController().navigate(action)
                     true
                 }
-                R.id.action_logout ->{
+
+                R.id.action_logout -> {
                     logout()
                     true
                 }
+
                 else -> false
             }
         }
@@ -75,7 +80,7 @@ class ProductDetailsFragment : Fragment() {
     private fun logout() {
         sharedPreferences = SharedPreferenceHelper(requireContext())
         sharedPreferences.clearCredentials()
-      val action = ProductDetailsFragmentDirections.actionProductDetailsFragmentToLoginFragment()
+        val action = ProductDetailsFragmentDirections.actionProductDetailsFragmentToLoginFragment()
         findNavController().navigate(action)
 
     }
