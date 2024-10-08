@@ -61,6 +61,7 @@ class CartsAdapter(private val totalPriceUpdater: TotalPriceUpdater) : RecyclerV
 
     fun setValues(products: List<ProductsResponseItem>) {
         this.cartList = ArrayList(products)
+
         updateTotalCartValue()
         notifyDataSetChanged()
     }
@@ -68,7 +69,7 @@ class CartsAdapter(private val totalPriceUpdater: TotalPriceUpdater) : RecyclerV
     interface TotalPriceUpdater {
         fun updateTotalPrice(totalPrice: Double)
     }
-    fun getTotalPrice(): Double {
+    fun getTotalPrice( ): Double {
         return cartList.sumByDouble { it.price * it.quantity }
     }
 }

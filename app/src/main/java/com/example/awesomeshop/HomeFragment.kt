@@ -17,7 +17,6 @@ import com.example.awesomeshop.reposatories.ProductRepository
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.CategoriesViewModel
 import com.example.awesomeshop.viewModel.ProductViewModel
-import dagger.hilt.android.AndroidEntryPoint
 
 
 class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAdapter.OnItemClickListener {
@@ -37,16 +36,20 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
         sharedPreferences = SharedPreferenceHelper(requireContext())
         setHasOptionsMenu(false)
 
-//        val fullName = sharedPreferences.getFullName()
-//        binding.tvWelcome.text = "Welcome, $fullName"
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val cartArgs = args.cart
+        binding.loadingId.root.visibility = View.VISIBLE
+        binding.rvCategories.visibility = View.GONE
+        binding.rvProducts.visibility = View.GONE
+        binding.tvWelcome.visibility = View.GONE
+        binding.tvCategories.visibility = View.GONE
+        binding.tvProducts.visibility = View.GONE
+
+        fetchData()
 
         binding.homeToolBer.root.setOnMenuItemClickListener { item ->
             when (item.itemId) {
@@ -63,6 +66,7 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
                 else -> false
             }
         }
+
         binding.homeToolBer.toolBerTitle.text = "Awesome Shop"
         binding.homeToolBer.toolBerBackBtn.visibility = View.GONE
 
@@ -74,24 +78,25 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
         binding.tvWelcome.text = "Welcome, $prefFullName"
 
         val recyclerView: RecyclerView = binding.rvCategories
-        recyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         val productRecyclerView: RecyclerView = binding.rvProducts
         productRecyclerView.layoutManager = GridLayoutManager(context, 2)
 
         CategoriesAdapter.listener = this
         ProductAdapter.listener = this
+    }
 
+    private fun fetchData() {
         viewModel = CategoriesViewModel(CategoriesRepository())
         viewModel.getCategories()
         viewModel.items.observe(viewLifecycleOwner) {
             it?.let {
                 adapter = CategoriesAdapter()
                 adapter.setCategoryList(it)
-                recyclerView.adapter = adapter
-                binding.loadingId.root.visibility = View.GONE
+                binding.rvCategories.adapter = adapter
                 binding.rvCategories.visibility = View.VISIBLE
+                checkDataLoad()
                 Log.d("categories", "onViewCreated: $it")
             }
         }
@@ -102,14 +107,22 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
             it?.let {
                 productAdapter = ProductAdapter()
                 productAdapter.setProductList(it)
-                productRecyclerView.adapter = productAdapter
-                binding.loadingId.root.visibility = View.GONE
+                binding.rvProducts.adapter = productAdapter
                 binding.rvProducts.visibility = View.VISIBLE
+                checkDataLoad()
                 Log.d("products", "onViewCreated: $it")
             }
         }
     }
 
+    private fun checkDataLoad() {
+        if (binding.rvCategories.visibility == View.VISIBLE && binding.rvProducts.visibility == View.VISIBLE) {
+            binding.loadingId.root.visibility = View.GONE
+            binding.tvWelcome.visibility = View.VISIBLE
+            binding.tvCategories.visibility = View.VISIBLE
+            binding.tvProducts.visibility = View.VISIBLE
+        }
+    }
 
     private fun logout() {
         sharedPreferences.clearCredentials()

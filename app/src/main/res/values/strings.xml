@@ -38,4 +38,5 @@
     <string name="visibile">visibile</string>
     <string name="app_logo">app logo</string>
     <string name="loading">loading...</string>
+    <string name="loadings">Loading...</string>
 </resources>

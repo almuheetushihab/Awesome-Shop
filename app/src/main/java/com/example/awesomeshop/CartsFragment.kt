@@ -75,10 +75,12 @@ class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
                     binding.tvKey.visibility = View.VISIBLE
                     binding.tvValue.visibility = View.VISIBLE
                     binding.orderBtn.visibility = View.VISIBLE
-
+//                    val totalPrice = cartsAdapter.getTotalPrice()
+//                    updateTotalPrice(totalPrice)
                     binding.tvKey.text = "Total Price:"
                     binding.tvValue.text = "46964.70 tk"
-//                    updateTotalPrice(cartsAdapter.getTotalPrice())
+
+
                 } else {
                     binding.tvKey.visibility = View.GONE
                     binding.tvValue.visibility = View.GONE
