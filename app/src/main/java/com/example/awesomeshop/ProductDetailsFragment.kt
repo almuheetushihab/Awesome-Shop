@@ -5,18 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.awesomeshop.databinding.ProductsDetailsBinding
-import com.example.awesomeshop.reposatories.ProductDetailsRepository
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.ProductDetailsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProductDetailsFragment : Fragment() {
     private lateinit var binding: ProductsDetailsBinding
     private val args: ProductDetailsFragmentArgs by navArgs()
-    private lateinit var viewModel: ProductDetailsViewModel
+    private val viewModel: ProductDetailsViewModel by viewModels()
     private lateinit var sharedPreferences: SharedPreferenceHelper
 
     override fun onCreateView(
@@ -58,7 +60,6 @@ class ProductDetailsFragment : Fragment() {
         binding.productDetailsLoading.root.visibility = View.VISIBLE
 
         val id = args.data
-        viewModel = ProductDetailsViewModel(ProductDetailsRepository())
         viewModel.getProductDetails(id)
         viewModel.items.observe(viewLifecycleOwner) {
             it?.let {

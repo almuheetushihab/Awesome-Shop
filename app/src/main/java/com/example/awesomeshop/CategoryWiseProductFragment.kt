@@ -7,18 +7,22 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.awesomeshop.databinding.FragmentCategoryWiseProductListBinding
-import com.example.awesomeshop.reposatories.CategoryWiseProductRepository
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.CategoryWiseProductViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class CategoryWiseProductFragment : Fragment() {
     private lateinit var binding: FragmentCategoryWiseProductListBinding
-    private lateinit var categoryWiseProductAdapter: CategoryWiseProductAdapter
-    private lateinit var viewModel: CategoryWiseProductViewModel
+
+    @Inject
+    lateinit var categoryWiseProductAdapter: CategoryWiseProductAdapter
+    private val viewModel: CategoryWiseProductViewModel by viewModels()
     private val args: CategoryWiseProductFragmentArgs by navArgs()
     private lateinit var sharedPreferences : SharedPreferenceHelper
 
@@ -59,7 +63,6 @@ class CategoryWiseProductFragment : Fragment() {
         val recyclerView: RecyclerView = binding.categoryWiseProductFragmentRecyclerView
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         categoryWiseProductAdapter = CategoryWiseProductAdapter()
-        viewModel = CategoryWiseProductViewModel(CategoryWiseProductRepository())
 
         viewModel.getCategoryWiseProducts(category)
         viewModel.items.observe(viewLifecycleOwner) {

@@ -1,16 +1,21 @@
+package com.example.awesomeshop
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.awesomeshop.databinding.AdapterCartsBinding
 import com.example.awesomeshop.models.product.ProductsResponseItem
+import javax.inject.Inject
 
-class CartsAdapter(private val totalPriceUpdater: TotalPriceUpdater) : RecyclerView.Adapter<CartsAdapter.ViewHolder>() {
+class CartsAdapter @Inject constructor(private val totalPriceUpdater: TotalPriceUpdater) :
+    RecyclerView.Adapter<CartsAdapter.ViewHolder>() {
     private var cartList = ArrayList<ProductsResponseItem>()
 
     class ViewHolder(val binding: AdapterCartsBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = AdapterCartsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            AdapterCartsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -48,9 +53,9 @@ class CartsAdapter(private val totalPriceUpdater: TotalPriceUpdater) : RecyclerV
         }
     }
 
-   private fun updateTotalCartValue() {
+    private fun updateTotalCartValue() {
         val totalPrice = cartList.sumOf { it.price * it.quantity }
-       val formattedTotalPrice = String.format("%.2f", totalPrice).toDouble()
+        val formattedTotalPrice = String.format("%.2f", totalPrice).toDouble()
         totalPriceUpdater.updateTotalPrice(formattedTotalPrice)
     }
 
@@ -69,7 +74,8 @@ class CartsAdapter(private val totalPriceUpdater: TotalPriceUpdater) : RecyclerV
     interface TotalPriceUpdater {
         fun updateTotalPrice(totalPrice: Double)
     }
-    fun getTotalPrice( ): Double {
+
+    fun getTotalPrice(): Double {
         return cartList.sumOf { it.price * it.quantity }
     }
 }

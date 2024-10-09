@@ -1,6 +1,5 @@
 package com.example.awesomeshop
 
-import CartsAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,20 +8,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.awesomeshop.databinding.FragmentCartsListBinding
-import com.example.awesomeshop.models.cart.CartResponse
-import com.example.awesomeshop.models.product.ProductsResponseItem
-import com.example.awesomeshop.reposatories.CartRepository
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.CartViewModel
-import java.util.ArrayList
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
     private lateinit var binding: FragmentCartsListBinding
-    private lateinit var cartsAdapter: CartsAdapter
-    private lateinit var viewModel: CartViewModel
+    @Inject
+    lateinit var cartsAdapter: CartsAdapter
+    private val viewModel: CartViewModel by viewModels()
     private val args: CartsFragmentArgs by navArgs()
     private lateinit var sharedPreferences: SharedPreferenceHelper
 
@@ -64,7 +64,6 @@ class CartsFragment : Fragment(), CartsAdapter.TotalPriceUpdater {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         cartsAdapter = CartsAdapter(this)
 
-        viewModel = CartViewModel(CartRepository())
         val cartId = args.cartId
         binding.cartLoading.root.visibility = View.VISIBLE
         viewModel.cartData(cartId)

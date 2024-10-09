@@ -5,8 +5,9 @@ import com.example.awesomeshop.models.product.ProductsResponseItem
 import com.example.awesomeshop.networks.ApiClient
 import com.example.awesomeshop.networks.ApiInterface
 import retrofit2.Response
+import javax.inject.Inject
 
-class CartRepository {
+class CartRepository @Inject constructor() {
 
     private val apiInterface: ApiInterface = ApiClient.getInstance().create(ApiInterface::class.java)
 

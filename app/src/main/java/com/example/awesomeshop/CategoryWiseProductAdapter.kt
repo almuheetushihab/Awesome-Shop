@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.awesomeshop.databinding.CategoryWiseProductAdapterBinding
 import com.example.awesomeshop.models.product.ProductsResponseItem
+import javax.inject.Inject
 
-class CategoryWiseProductAdapter : RecyclerView.Adapter<CategoryWiseProductAdapter.ViewHolder>() {
+class CategoryWiseProductAdapter @Inject constructor() : RecyclerView.Adapter<CategoryWiseProductAdapter.ViewHolder>() {
 
     private var productList = ArrayList<ProductsResponseItem>()
 

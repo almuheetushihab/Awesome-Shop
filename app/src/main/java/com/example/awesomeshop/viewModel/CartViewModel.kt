@@ -5,11 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.awesomeshop.models.product.ProductsResponseItem
 import com.example.awesomeshop.reposatories.CartRepository
-import kotlinx.coroutines.delay
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.util.logging.Handler
+import javax.inject.Inject
 
-class CartViewModel(private val cartRepository: CartRepository) : ViewModel() {
+@HiltViewModel
+class CartViewModel @Inject constructor(private val cartRepository: CartRepository) : ViewModel() {
     val items = MutableLiveData<List<ProductsResponseItem>>()
 
 
