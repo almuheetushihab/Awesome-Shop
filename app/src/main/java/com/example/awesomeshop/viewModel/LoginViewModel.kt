@@ -17,7 +17,7 @@ import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val repository: LoginRepository,
+    private val loginRepository: LoginRepository,
     private val sharedPreference: SharedPreferenceHelper
 ) : ViewModel() {
 
@@ -26,7 +26,7 @@ class LoginViewModel @Inject constructor(
 
     fun login(username: String, password: String, fullName: String) {
         viewModelScope.launch {
-            val response = repository.login(username, password)
+            val response = loginRepository.login(username, password)
             _items.postValue(response)
 
             if (response.isSuccessful) {

@@ -4,10 +4,11 @@ import com.example.awesomeshop.networks.ApiClient
 import com.example.awesomeshop.networks.ApiInterface
 import javax.inject.Inject
 
-class CategoriesRepository @Inject constructor() {
+class CategoriesRepository @Inject constructor(
+    private val productApi: ApiInterface
+) {
 
     suspend fun getCategories(): List<String>? {
-        val productApi = ApiClient.getInstance().create(ApiInterface::class.java)
         return productApi.getCategories().body()
     }
 }

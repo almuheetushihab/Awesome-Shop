@@ -6,9 +6,10 @@ import com.example.awesomeshop.networks.ApiInterface
 import javax.inject.Inject
 
 
-class ProductRepository @Inject constructor() {
+class ProductRepository @Inject constructor(
+    private val productApi: ApiInterface
+) {
     suspend fun getProducts(): ProductsResponse? {
-        val productApi = ApiClient.getInstance().create(ApiInterface::class.java)
         return productApi.getProducts().body()
     }
 }

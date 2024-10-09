@@ -5,9 +5,10 @@ import com.example.awesomeshop.networks.ApiClient
 import com.example.awesomeshop.networks.ApiInterface
 import javax.inject.Inject
 
-class ProductDetailsRepository @Inject constructor() {
+class ProductDetailsRepository @Inject constructor(
+    private val productApi: ApiInterface
+) {
     suspend fun getProductDetails(id: Int): ProductsResponseItem? {
-        val productApi = ApiClient.getInstance().create(ApiInterface::class.java)
         return productApi.getProductDetails(id).body()
     }
 }
