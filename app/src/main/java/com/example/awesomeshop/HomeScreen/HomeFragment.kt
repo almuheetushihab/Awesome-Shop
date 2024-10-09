@@ -1,4 +1,4 @@
-package com.example.awesomeshop
+package com.example.awesomeshop.HomeScreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.awesomeshop.R
 import com.example.awesomeshop.databinding.FragmentHomeBinding
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.CategoriesViewModel

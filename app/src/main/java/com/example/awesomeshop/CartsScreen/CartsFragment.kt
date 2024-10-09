@@ -1,4 +1,4 @@
-package com.example.awesomeshop
+package com.example.awesomeshop.CartsScreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.awesomeshop.R
 import com.example.awesomeshop.databinding.FragmentCartsListBinding
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.CartViewModel

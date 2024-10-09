@@ -1,4 +1,4 @@
-package com.example.awesomeshop
+package com.example.awesomeshop.CartsScreen
 
 import dagger.Module
 import dagger.Provides

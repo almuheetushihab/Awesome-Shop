@@ -1,4 +1,4 @@
-package com.example.awesomeshop
+package com.example.awesomeshop.HomeScreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -19,7 +19,7 @@ class ProductAdapter @Inject constructor() : RecyclerView.Adapter<ProductAdapter
 
     class ViewHolder(var binding: ProductAdapterBinding) : RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int):ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding = ProductAdapterBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
     }

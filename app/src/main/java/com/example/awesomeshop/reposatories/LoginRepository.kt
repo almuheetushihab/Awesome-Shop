@@ -8,6 +8,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor() {
+
     suspend fun login(username: String, password: String): Response<LoginResponse> {
         val loginApi = ApiClient.getInstance().create(ApiInterface::class.java)
         return loginApi.login(LoginRequest(username, password))

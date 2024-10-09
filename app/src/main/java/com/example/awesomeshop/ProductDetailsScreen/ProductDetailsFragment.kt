@@ -1,4 +1,4 @@
-package com.example.awesomeshop
+package com.example.awesomeshop.ProductDetailsScreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.awesomeshop.R
 import com.example.awesomeshop.databinding.ProductsDetailsBinding
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.ProductDetailsViewModel

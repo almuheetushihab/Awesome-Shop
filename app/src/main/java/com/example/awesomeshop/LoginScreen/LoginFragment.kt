@@ -1,4 +1,4 @@
-package com.example.awesomeshop
+package com.example.awesomeshop.LoginScreen
 
 import android.os.Bundle
 import android.text.InputType
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.awesomeshop.R
 import com.example.awesomeshop.databinding.FragmentLoginBinding
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.LoginViewModel
@@ -93,7 +94,7 @@ class LoginFragment : Fragment() {
         }
 
         if (fullName.length < 3) {
-            Toast.makeText(requireContext(), "Full Name must contain at least three characters", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), requireContext().getString(R.string.name_length_error), Toast.LENGTH_SHORT).show()
             return false
         }
 

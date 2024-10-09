@@ -11,7 +11,6 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductViewModel @Inject constructor(private val productRepository: ProductRepository) : ViewModel() {
 
-
     private val _items: MutableLiveData<ProductsResponse?> by lazy {
         MutableLiveData<ProductsResponse?>()
     }
