@@ -57,7 +57,7 @@ class LoginFragment : Fragment() {
             val fullName = binding.etFullName.text.toString().trim()
 
             if (validateInputs(username, password, fullName)) {
-                viewModel.login(username, password)
+                viewModel.login(username, password, fullName)
             }
         }
 
@@ -67,11 +67,11 @@ class LoginFragment : Fragment() {
                 Toast.makeText(requireContext(), "Login Successful. Token: $token", Toast.LENGTH_SHORT).show()
 
                 val fullName = binding.etFullName.text.toString()
-                val username = binding.etUsername.text.toString()
-                val password = binding.etPassword.text.toString()
+                if (token != null) {
+                    sharedPreference.saveCredentials(token, fullName)
+                }
+                navigateToHomeFragment(fullName)
 
-                sharedPreference.saveCredentials(username, password, fullName)
-                navigateToHomeFragment()
             } else {
                 Toast.makeText(requireContext(), "Login Failed: ${response.message()}", Toast.LENGTH_SHORT).show()
             }
@@ -114,22 +114,17 @@ class LoginFragment : Fragment() {
     }
 
 
-    private fun navigateToHomeFragment() {
-        val fullName = binding.etFullName.text.toString()
+    private fun navigateToHomeFragment(fullName: String) {
         val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(fullName)
         findNavController().navigate(action)
     }
 
     private fun loadSavedCredentials() {
-        val savedFullName = sharedPreference.getFullName()
-        val savedUsername = sharedPreference.getUsername()
-        val savedPassword = sharedPreference.getPassword()
-
-        if (!savedUsername.isNullOrEmpty() && !savedPassword.isNullOrEmpty() && !savedFullName.isNullOrEmpty()) {
-            binding.etFullName.setText(savedFullName)
-            binding.etUsername.setText(savedUsername)
-            binding.etPassword.setText(savedPassword)
-            viewModel.login(savedUsername, savedPassword)
+        val token = sharedPreference.getToken()
+        val fullName = sharedPreference.getFullName()
+        if (token != null) {
+            navigateToHomeFragment(fullName!!)
         }
+
     }
 }

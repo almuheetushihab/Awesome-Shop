@@ -32,11 +32,12 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
         navController = navHostFragment.navController
 
-        val savedUsername = sharedPreferences.getUsername()
-        val savedPassword = sharedPreferences.getPassword()
-        if (!savedUsername.isNullOrEmpty() && !savedPassword.isNullOrEmpty()) {
+        val getToken = sharedPreferences.getToken()
+        if (getToken != null) {
+            navController.setGraph(R.navigation.nav_graph)
             navController.navigate(R.id.homeFragment)
-        }else{
+        } else {
+            navController.setGraph(R.navigation.nav_graph)
             navController.navigate(R.id.loginFragment)
         }
 

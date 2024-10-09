@@ -86,5 +86,4 @@ class ProductDetailsFragment : Fragment() {
         findNavController().navigate(action)
 
     }
-
 }
