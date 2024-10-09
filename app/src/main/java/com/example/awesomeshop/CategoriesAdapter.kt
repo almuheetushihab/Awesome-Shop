@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.awesomeshop.databinding.CategoriesAdapterBinding
 import java.util.ArrayList
+import javax.inject.Inject
 
-class CategoriesAdapter() : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
+class CategoriesAdapter @Inject constructor() : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
     private var categoryList = ArrayList<String>()
 

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,16 +19,22 @@ import com.example.awesomeshop.reposatories.ProductRepository
 import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
 import com.example.awesomeshop.viewModel.CategoriesViewModel
 import com.example.awesomeshop.viewModel.ProductViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
-class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAdapter.OnItemClickListener {
+@AndroidEntryPoint
+class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener,
+    ProductAdapter.OnItemClickListener {
     private lateinit var binding: FragmentHomeBinding
     private val args: HomeFragmentArgs by navArgs()
-    private lateinit var viewModel: CategoriesViewModel
-    private lateinit var productViewModel: ProductViewModel
-    private lateinit var adapter: CategoriesAdapter
-    private lateinit var productAdapter: ProductAdapter
-    private lateinit var sharedPreferences : SharedPreferenceHelper
+    private val viewModel: CategoriesViewModel by viewModels()
+    private val productViewModel: ProductViewModel by viewModels()
+
+    @Inject
+    lateinit var adapter: CategoriesAdapter
+    @Inject
+    lateinit var productAdapter: ProductAdapter
+    private lateinit var sharedPreferences: SharedPreferenceHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,10 +65,12 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
                     findNavController().navigate(action)
                     true
                 }
+
                 R.id.action_logout -> {
                     logout()
                     true
                 }
+
                 else -> false
             }
         }
@@ -69,11 +78,13 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
         binding.homeToolBer.toolBerTitle.text = "Awesome Shop"
         binding.homeToolBer.toolBerBackBtn.visibility = View.GONE
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                requireActivity().finishAffinity()
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().finishAffinity()
+                }
+            })
 
         sharedPreferences = SharedPreferenceHelper(requireContext())
 
@@ -83,7 +94,8 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
         binding.tvWelcome.text = "Welcome, $prefFullName"
 
         val recyclerView: RecyclerView = binding.rvCategories
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         val productRecyclerView: RecyclerView = binding.rvProducts
         productRecyclerView.layoutManager = GridLayoutManager(context, 2)
@@ -96,14 +108,9 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
 
 
     private fun fetchData() {
-        viewModel = CategoriesViewModel(CategoriesRepository())
-        productViewModel = ProductViewModel(ProductRepository())
-
-
         viewModel.getCategories()
         viewModel.items.observe(viewLifecycleOwner) { categories ->
             categories?.let {
-                adapter = CategoriesAdapter()
                 adapter.setCategoryList(it)
                 binding.rvCategories.adapter = adapter
                 binding.rvCategories.visibility = View.VISIBLE
@@ -116,7 +123,6 @@ class HomeFragment : Fragment(), CategoriesAdapter.ItemClickListener, ProductAda
         productViewModel.getProducts()
         productViewModel.items.observe(viewLifecycleOwner) { products ->
             products?.let {
-                productAdapter = ProductAdapter()
                 productAdapter.setProductList(it)
                 binding.rvProducts.adapter = productAdapter
                 binding.rvProducts.visibility = View.VISIBLE

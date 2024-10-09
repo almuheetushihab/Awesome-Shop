@@ -6,9 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.awesomeshop.models.product.ProductsResponseItem
 import com.example.awesomeshop.reposatories.CategoryWiseProductRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CategoryWiseProductViewModel(
+@HiltViewModel
+class CategoryWiseProductViewModel @Inject constructor(
     private val categoryWiseProductRepository: CategoryWiseProductRepository
 ) : ViewModel() {
 

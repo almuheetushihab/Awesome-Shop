@@ -1,14 +1,15 @@
 package com.example.awesomeshop.viewModel
-
-import android.os.Handler
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.awesomeshop.models.product.ProductsResponse
 import com.example.awesomeshop.reposatories.ProductRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProductViewModel(private val productRepository: ProductRepository) : ViewModel() {
+@HiltViewModel
+class ProductViewModel @Inject constructor(private val productRepository: ProductRepository) : ViewModel() {
 
 
     private val _items: MutableLiveData<ProductsResponse?> by lazy {
