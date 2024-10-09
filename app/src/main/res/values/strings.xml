@@ -40,4 +40,6 @@
     <string name="loading">loading...</string>
     <string name="loadings">Loading...</string>
     <string name="name_length_error">Full Name must contain at least three characters</string>
+    <string name="user_length_error">Username must be at least 3 characters long</string>
+    <string name="name_spacing_error">Full Name cannot contain only spaces</string>
 </resources>

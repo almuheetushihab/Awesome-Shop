@@ -79,17 +79,19 @@ class LoginFragment : Fragment() {
     }
 
     private fun validateInputs(username: String, password: String, fullName: String): Boolean {
+
         if (username.isEmpty() || password.isEmpty() || fullName.isEmpty()) {
             Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
             return false
         }
+
         if (fullName.any { it.isDigit() }) {
             Toast.makeText(requireContext(), "Full Name cannot contain numbers", Toast.LENGTH_SHORT).show()
             return false
         }
 
         if (fullName.trim().isEmpty() || fullName.replace(" ", "").isEmpty()) {
-            Toast.makeText(requireContext(), "Full Name cannot contain only spaces", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), requireContext().getString(R.string.name_spacing_error), Toast.LENGTH_SHORT).show()
             return false
         }
 
@@ -98,8 +100,19 @@ class LoginFragment : Fragment() {
             return false
         }
 
+        if (username.length < 3) {
+            Toast.makeText(requireContext(), requireContext().getString(R.string.user_length_error), Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (password.length < 6) {
+            Toast.makeText(requireContext(), "Password must be at least 6 characters long", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
         return true
     }
+
 
     private fun navigateToHomeFragment() {
         val fullName = binding.etFullName.text.toString()
