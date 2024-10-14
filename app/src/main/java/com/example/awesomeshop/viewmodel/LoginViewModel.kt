@@ -1,4 +1,4 @@
-package com.example.awesomeshop.viewModel
+package com.example.awesomeshop.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +12,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 
-import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
+import com.example.awesomeshop.sharedpreference.SharedPreferenceHelper
 
 
 @HiltViewModel

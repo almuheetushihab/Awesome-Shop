@@ -1,4 +1,4 @@
-package com.example.awesomeshop.CartsScreen
+package com.example.awesomeshop.cartsscreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

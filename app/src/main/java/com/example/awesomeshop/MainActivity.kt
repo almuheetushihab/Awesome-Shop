@@ -8,7 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.awesomeshop.databinding.ActivityMainBinding
-import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
+import com.example.awesomeshop.sharedpreference.SharedPreferenceHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

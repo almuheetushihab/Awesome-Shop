@@ -1,4 +1,4 @@
-package com.example.awesomeshop.HomeScreen
+package com.example.awesomeshop.homescreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.awesomeshop.R
 import com.example.awesomeshop.databinding.FragmentHomeBinding
-import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
-import com.example.awesomeshop.viewModel.CategoriesViewModel
-import com.example.awesomeshop.viewModel.ProductViewModel
+import com.example.awesomeshop.sharedpreference.SharedPreferenceHelper
+import com.example.awesomeshop.viewmodel.CategoriesViewModel
+import com.example.awesomeshop.viewmodel.ProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

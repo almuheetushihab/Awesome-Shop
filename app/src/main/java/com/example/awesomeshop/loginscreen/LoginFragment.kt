@@ -1,4 +1,4 @@
-package com.example.awesomeshop.LoginScreen
+package com.example.awesomeshop.loginscreen
 
 import android.os.Bundle
 import android.text.InputType
@@ -11,8 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.awesomeshop.R
 import com.example.awesomeshop.databinding.FragmentLoginBinding
-import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
-import com.example.awesomeshop.viewModel.LoginViewModel
+import com.example.awesomeshop.sharedpreference.SharedPreferenceHelper
+import com.example.awesomeshop.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

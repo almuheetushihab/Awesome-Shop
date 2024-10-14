@@ -1,4 +1,4 @@
-package com.example.awesomeshop.HomeScreen
+package com.example.awesomeshop.homescreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

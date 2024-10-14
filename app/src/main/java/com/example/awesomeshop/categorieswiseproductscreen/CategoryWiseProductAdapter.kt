@@ -1,4 +1,4 @@
-package com.example.awesomeshop.CategoriesWiseProductScreen
+package com.example.awesomeshop.categorieswiseproductscreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

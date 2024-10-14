@@ -1,4 +1,4 @@
-package com.example.awesomeshop.CategoriesWiseProductScreen
+package com.example.awesomeshop.categorieswiseproductscreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,8 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.awesomeshop.R
 import com.example.awesomeshop.databinding.FragmentCategoryWiseProductListBinding
-import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
-import com.example.awesomeshop.viewModel.CategoryWiseProductViewModel
+import com.example.awesomeshop.sharedpreference.SharedPreferenceHelper
+import com.example.awesomeshop.viewmodel.CategoryWiseProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

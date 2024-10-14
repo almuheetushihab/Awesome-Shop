@@ -2,8 +2,7 @@ package com.example.awesomeshop.di
 
 import android.app.Application
 import android.content.Context
-import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
-import dagger.Binds
+import com.example.awesomeshop.sharedpreference.SharedPreferenceHelper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.awesomeshop.LoginScreen.LoginFragment"
+        android:name="com.example.awesomeshop.loginscreen.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.awesomeshop.HomeScreen.HomeFragment"
+        android:name="com.example.awesomeshop.homescreen.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoryWiseProductFragment"
-        android:name="com.example.awesomeshop.CategoriesWiseProductScreen.CategoryWiseProductFragment"
+        android:name="com.example.awesomeshop.categorieswiseproductscreen.CategoryWiseProductFragment"
         android:label="fragment_category_wise_product_list"
         tools:layout="@layout/fragment_category_wise_product_list" >
         <argument
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.example.awesomeshop.ProductDetailsScreen.ProductDetailsFragment"
+        android:name="com.example.awesomeshop.productdetailsscreen.ProductDetailsFragment"
         android:label="products_details"
         tools:layout="@layout/products_details" >
         <argument
@@ -73,7 +73,7 @@
     </fragment>
     <fragment
         android:id="@+id/cartsFragment"
-        android:name="com.example.awesomeshop.CartsScreen.CartsFragment"
+        android:name="com.example.awesomeshop.cartsscreen.CartsFragment"
         android:label="fragment_carts_list"
         tools:layout="@layout/fragment_carts_list" >
         <action

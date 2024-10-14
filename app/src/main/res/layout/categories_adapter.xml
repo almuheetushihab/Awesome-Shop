@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="12dp"
-    tools:context=".HomeScreen.CategoriesAdapter">
+    tools:context=".homescreen.CategoriesAdapter">
 
     <TextView
         android:id="@+id/categories_name"

@@ -1,4 +1,4 @@
-package com.example.awesomeshop.CartsScreen
+package com.example.awesomeshop.cartsscreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,8 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.awesomeshop.R
 import com.example.awesomeshop.databinding.FragmentCartsListBinding
-import com.example.awesomeshop.sharedPreference.SharedPreferenceHelper
-import com.example.awesomeshop.viewModel.CartViewModel
+import com.example.awesomeshop.sharedpreference.SharedPreferenceHelper
+import com.example.awesomeshop.viewmodel.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
